@@ -1,0 +1,262 @@
+:root {
+  color-scheme: dark;
+  --bg: #040813;
+  --bg-strong: #050b19;
+  --surface: rgba(4, 8, 19, 0.82);
+  --text: #f8f9ff;
+  --muted: rgba(255, 255, 255, 0.54);
+  --muted-strong: rgba(255, 255, 255, 0.82);
+  --accent: #f5a623;
+  --shadow: 0 40px 120px rgba(3, 7, 15, 0.4);
+  font-family: 'Outfit', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100svh;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url('/assets/background-image@2x.webp');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  z-index: -2;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(4, 8, 19, 0.24), rgba(4, 8, 19, 0.92));
+  z-index: -1;
+}
+
+.page-shell {
+  min-height: 100svh;
+  padding: env(safe-area-inset-top) 24px env(safe-area-inset-bottom);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.language-switcher {
+  position: fixed;
+  top: max(48px, env(safe-area-inset-top));
+  right: 24px;
+  z-index: 2;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.language-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.language-link {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: color 0.18s ease, transform 0.18s ease;
+  outline-offset: 3px;
+}
+
+.language-link:hover,
+.language-link:focus-visible {
+  color: var(--text);
+  transform: translateY(-1px);
+}
+
+.language-link.active {
+  color: var(--text);
+  font-family: 'Geist', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 500;
+}
+
+.language-separator {
+  color: rgba(255, 255, 255, 0.24);
+  font-size: 10px;
+  line-height: 1;
+}
+
+.page-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 28px;
+  padding: 40px 24px 32px;
+}
+
+.logo-wrapper {
+  width: min(240px, 55vw);
+  max-width: 240px;
+  animation: logoAppear 0.8s ease forwards;
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.brand-logo {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.text-block {
+  max-width: 920px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  animation: contentAppear 1.2s ease forwards;
+  opacity: 0;
+}
+
+.text-block h1 {
+  margin: 0;
+  font-size: clamp(18px, 4vw, 22px);
+  line-height: 1.4;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+.text-block p {
+  margin: 0;
+  color: var(--muted-strong);
+  font-family: 'Geist', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: clamp(12px, 1.15vw, 14px);
+  line-height: 1.5;
+}
+
+.footer-row {
+  position: fixed;
+  left: 24px;
+  right: 24px;
+  bottom: max(34px, env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.email-link,
+.copyright {
+  font-family: 'Geist', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.email-link {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.email-link:hover,
+.email-link:focus-visible {
+  color: var(--text);
+}
+
+.copyright {
+  color: var(--muted);
+  font-size: 9px;
+}
+
+@media (max-width: 768px) {
+  .page-shell {
+    padding: env(safe-area-inset-top) 18px env(safe-area-inset-bottom);
+  }
+
+  .language-switcher {
+    top: max(72px, env(safe-area-inset-top));
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 8px;
+  }
+
+  .page-content {
+    gap: 20px;
+    padding: 32px 18px 24px;
+  }
+
+  .logo-wrapper {
+    max-width: 140px;
+  }
+}
+
+@media (min-width: 769px) {
+  .page-content {
+    padding-top: 120px;
+  }
+}
+
+@media (max-width: 430px) {
+  .logo-wrapper {
+    max-width: 140px;
+  }
+
+  .text-block h1 {
+    font-size: 18px;
+  }
+
+  .text-block p {
+    font-size: 12px;
+  }
+
+  .footer-row {
+    bottom: max(70px, env(safe-area-inset-bottom));
+    gap: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@keyframes logoAppear {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes contentAppear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
