@@ -10,6 +10,7 @@
     "build:stages": "node scripts/build-stages.mjs",
     "scan:leaks": "node scripts/stage-leakage-scan.mjs dist",
     "scan:stage-leaks": "node scripts/stage-leakage-scan.mjs artifacts/stages",
+    "test:scheduler": "bash scripts/rehearse-scheduler.sh",
     "preview": "vite preview --host 0.0.0.0",
     "serve:static": "node scripts/static-stage-server.mjs",
     "lint": "eslint . --ext .js,.ts,.jsx,.tsx",

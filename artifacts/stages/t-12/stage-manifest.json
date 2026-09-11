@@ -1,7 +1,7 @@
 {
   "stageId": "t-12",
   "unlockAt": "2026-09-19T00:00:00Z",
-  "sourceCommit": "12e13c6503fe07dde1f02487894528fca7a51f85",
+  "sourceCommit": "cee2593a2be422a45333620182c95b29c737428f",
   "contentHash": "21df9346b142a66e877c9cc2e97c89dbe0d693d0edc07fc9cca8513a5e0f3b25",
   "routes": [
     "/",
@@ -25,5 +25,5 @@
     "/es/discover/together/",
     "/ru/discover/together/"
   ],
-  "generatedAt": "2026-09-11T18:02:11.522Z"
+  "generatedAt": "2026-09-11T18:25:06.176Z"
 }

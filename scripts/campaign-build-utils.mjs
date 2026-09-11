@@ -118,6 +118,31 @@ export const writeStageManifest = async (stageRoot, stageId, payload) => {
   return manifest;
 };
 
+export const writePublicHashManifest = async (stageRoot) => {
+  const publicRoot = path.join(stageRoot, 'public');
+  const files = [];
+  const walk = async (dir) => {
+    for (const entry of await readdir(dir, { withFileTypes: true })) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) await walk(full);
+      else files.push(full);
+    }
+  };
+
+  await walk(publicRoot);
+  files.sort((a, b) => a.localeCompare(b));
+
+  const lines = [];
+  for (const file of files) {
+    const body = await readFile(file);
+    const hash = createHash('sha256').update(body).digest('hex');
+    const relative = path.relative(stageRoot, file).replaceAll('\\', '/');
+    lines.push(`${hash}  ${relative}`);
+  }
+
+  await writeFile(path.join(stageRoot, 'public.sha256'), `${lines.join('\n')}\n`);
+};
+
 export const walkTextFiles = async (root) => {
   const files = [];
   const walk = async (dir) => {

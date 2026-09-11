@@ -1,7 +1,7 @@
 {
   "stageId": "t-6",
   "unlockAt": "2026-09-25T00:00:00Z",
-  "sourceCommit": "12e13c6503fe07dde1f02487894528fca7a51f85",
+  "sourceCommit": "cee2593a2be422a45333620182c95b29c737428f",
   "contentHash": "e5d2d6b685088f9107560cfd1e7844963c788bd5e5b244143312adc90f2b3ca6",
   "routes": [
     "/",
@@ -33,5 +33,5 @@
     "/es/discover/moments/",
     "/ru/discover/moments/"
   ],
-  "generatedAt": "2026-09-11T18:02:15.251Z"
+  "generatedAt": "2026-09-11T18:25:10.373Z"
 }

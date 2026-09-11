@@ -1,7 +1,7 @@
 {
   "stageId": "t-18",
   "unlockAt": "2026-09-13T00:00:00Z",
-  "sourceCommit": "12e13c6503fe07dde1f02487894528fca7a51f85",
+  "sourceCommit": "cee2593a2be422a45333620182c95b29c737428f",
   "contentHash": "8c98aa440877de127834ac7e9877980aa3ca75e1083789bc1e12a97765474e4d",
   "routes": [
     "/",
@@ -17,5 +17,5 @@
     "/es/discover/events/",
     "/ru/discover/events/"
   ],
-  "generatedAt": "2026-09-11T18:02:07.535Z"
+  "generatedAt": "2026-09-11T18:25:02.217Z"
 }

@@ -1,7 +1,15 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
 import path from 'node:path';
-import { createPayload, createRouteEntrypoints, resetDir, stages, writeGeneratedPayload, writeStageManifest } from './campaign-build-utils.mjs';
+import {
+  createPayload,
+  createRouteEntrypoints,
+  resetDir,
+  stages,
+  writeGeneratedPayload,
+  writePublicHashManifest,
+  writeStageManifest
+} from './campaign-build-utils.mjs';
 
 const outputRoot = path.resolve('artifacts/stages');
 const originalGenerated = await readFile('src/campaign/generatedCampaign.ts', 'utf8');
@@ -22,11 +30,13 @@ try {
     });
     await createRouteEntrypoints(publicDir, stage.id);
     const manifest = await writeStageManifest(stageRoot, stage.id, payload);
+    await writePublicHashManifest(stageRoot);
     index.push({
       stageId: stage.id,
       unlockAt: stage.unlockAt,
       publicDir: path.relative(process.cwd(), publicDir).replaceAll('\\', '/'),
       manifest: path.relative(process.cwd(), path.join(stageRoot, 'stage-manifest.json')).replaceAll('\\', '/'),
+      integrity: path.relative(process.cwd(), path.join(stageRoot, 'public.sha256')).replaceAll('\\', '/'),
       contentHash: manifest.contentHash,
       routeCount: manifest.routes.length
     });
@@ -39,6 +49,6 @@ await writeFile(path.join(outputRoot, 'stage-artifacts-index.json'), `${JSON.str
 await writeFile(
   path.join(outputRoot, 'index.md'),
   `# AL-WEB-PL-ENG-001 Stage Artifacts\n\n${index
-    .map((item) => `- ${item.stageId}: \`${item.publicDir}\` / \`${item.manifest}\` / ${item.routeCount} routes`)
+    .map((item) => `- ${item.stageId}: \`${item.publicDir}\` / \`${item.manifest}\` / \`${item.integrity}\` / ${item.routeCount} routes`)
     .join('\n')}\n`,
 );

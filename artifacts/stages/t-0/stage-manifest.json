@@ -1,7 +1,7 @@
 {
   "stageId": "t-0",
   "unlockAt": "2026-10-01T00:00:00Z",
-  "sourceCommit": "12e13c6503fe07dde1f02487894528fca7a51f85",
+  "sourceCommit": "cee2593a2be422a45333620182c95b29c737428f",
   "contentHash": "5d7f6f592c3697553a8a76466436223a1bd26ce95d634eb6d490898aed05d046",
   "routes": [
     "/",
@@ -37,5 +37,5 @@
     "/es/discover/one-click-one-emotion/",
     "/ru/discover/one-click-one-emotion/"
   ],
-  "generatedAt": "2026-09-11T18:02:18.871Z"
+  "generatedAt": "2026-09-11T18:25:14.651Z"
 }

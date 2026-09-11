@@ -2,6 +2,7 @@ node_modules/
 dist/
 screenshots/
 artifacts/screenshots/
+artifacts/release-preflight/
 artifacts/stages/*/public/
 
 .env*
