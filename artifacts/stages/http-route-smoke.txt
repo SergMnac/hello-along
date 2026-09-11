@@ -1,0 +1,8 @@
+﻿t-21 published=hello:200 future=404
+t-18 published=events:200 future=404
+t-15 published=city:200 future=404
+t-12 published=together:200 future=404
+t-9 published=atmosphere:200 future=404
+t-6 published=moments:200 future=404
+t-3 published=one-click-one-emotion:200 future=none
+t-0 published=one-click-one-emotion:200 future=none

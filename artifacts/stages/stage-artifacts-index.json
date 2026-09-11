@@ -1,0 +1,74 @@
+[
+  {
+    "stageId": "t-21",
+    "unlockAt": "2026-09-10T00:00:00Z",
+    "publicDir": "artifacts/stages/t-21/public",
+    "manifest": "artifacts/stages/t-21/stage-manifest.json",
+    "integrity": "artifacts/stages/t-21/public.sha256",
+    "contentHash": "5f2de95b4773b9943a0397b1f71829406a62f867b6a9a99d76adf831366a9038",
+    "routeCount": 8
+  },
+  {
+    "stageId": "t-18",
+    "unlockAt": "2026-09-13T00:00:00Z",
+    "publicDir": "artifacts/stages/t-18/public",
+    "manifest": "artifacts/stages/t-18/stage-manifest.json",
+    "integrity": "artifacts/stages/t-18/public.sha256",
+    "contentHash": "8c98aa440877de127834ac7e9877980aa3ca75e1083789bc1e12a97765474e4d",
+    "routeCount": 12
+  },
+  {
+    "stageId": "t-15",
+    "unlockAt": "2026-09-16T00:00:00Z",
+    "publicDir": "artifacts/stages/t-15/public",
+    "manifest": "artifacts/stages/t-15/stage-manifest.json",
+    "integrity": "artifacts/stages/t-15/public.sha256",
+    "contentHash": "393be71486c354f3b9a28b47402ecbbd76a8b44241bf84022ef29d2350cf0efe",
+    "routeCount": 16
+  },
+  {
+    "stageId": "t-12",
+    "unlockAt": "2026-09-19T00:00:00Z",
+    "publicDir": "artifacts/stages/t-12/public",
+    "manifest": "artifacts/stages/t-12/stage-manifest.json",
+    "integrity": "artifacts/stages/t-12/public.sha256",
+    "contentHash": "21df9346b142a66e877c9cc2e97c89dbe0d693d0edc07fc9cca8513a5e0f3b25",
+    "routeCount": 20
+  },
+  {
+    "stageId": "t-9",
+    "unlockAt": "2026-09-22T00:00:00Z",
+    "publicDir": "artifacts/stages/t-9/public",
+    "manifest": "artifacts/stages/t-9/stage-manifest.json",
+    "integrity": "artifacts/stages/t-9/public.sha256",
+    "contentHash": "e43d29d2260d025ad1a325846b518ece674800497610f0e1b46d5b111051d9c6",
+    "routeCount": 24
+  },
+  {
+    "stageId": "t-6",
+    "unlockAt": "2026-09-25T00:00:00Z",
+    "publicDir": "artifacts/stages/t-6/public",
+    "manifest": "artifacts/stages/t-6/stage-manifest.json",
+    "integrity": "artifacts/stages/t-6/public.sha256",
+    "contentHash": "e5d2d6b685088f9107560cfd1e7844963c788bd5e5b244143312adc90f2b3ca6",
+    "routeCount": 28
+  },
+  {
+    "stageId": "t-3",
+    "unlockAt": "2026-09-28T00:00:00Z",
+    "publicDir": "artifacts/stages/t-3/public",
+    "manifest": "artifacts/stages/t-3/stage-manifest.json",
+    "integrity": "artifacts/stages/t-3/public.sha256",
+    "contentHash": "9beb5905430416677f432cc90fad24e7765563fee878ad63d085e84a81250b67",
+    "routeCount": 32
+  },
+  {
+    "stageId": "t-0",
+    "unlockAt": "2026-10-01T00:00:00Z",
+    "publicDir": "artifacts/stages/t-0/public",
+    "manifest": "artifacts/stages/t-0/stage-manifest.json",
+    "integrity": "artifacts/stages/t-0/public.sha256",
+    "contentHash": "5d7f6f592c3697553a8a76466436223a1bd26ce95d634eb6d490898aed05d046",
+    "routeCount": 32
+  }
+]

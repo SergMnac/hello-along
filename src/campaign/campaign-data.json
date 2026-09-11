@@ -1,0 +1,258 @@
+{
+  "locales": ["en", "es", "ru"],
+  "slugs": ["hello", "events", "city", "together", "atmosphere", "moments", "one-click-one-emotion"],
+  "base": {
+    "en": {
+      "atmospheric": "Every city has stories waiting to happen.",
+      "subtitle": "Creating something beautiful takes time.",
+      "email": "hello@hello-along.com",
+      "copyright": "© 2025 Along",
+      "languageLabel": "Language selector",
+      "closeLabel": "Close note",
+      "noteListLabel": "Campaign notes",
+      "campaignLabel": "21 Days to Life",
+      "notFoundTitle": "Not found.",
+      "notFoundBody": "This page is not available."
+    },
+    "es": {
+      "atmospheric": "Cada ciudad tiene historias esperando suceder.",
+      "subtitle": "Crear algo hermoso lleva tiempo.",
+      "email": "hello@hello-along.com",
+      "copyright": "© 2025 Along",
+      "languageLabel": "Selector de idioma",
+      "closeLabel": "Cerrar nota",
+      "noteListLabel": "Notas de campaña",
+      "campaignLabel": "21 Days to Life",
+      "notFoundTitle": "No encontrado.",
+      "notFoundBody": "Esta página no está disponible."
+    },
+    "ru": {
+      "atmospheric": "У каждого города есть истории, которым ещё предстоит случиться.",
+      "subtitle": "Чтобы создать что-то красивое, нужно время.",
+      "email": "hello@hello-along.com",
+      "copyright": "© 2025 Along",
+      "languageLabel": "Выбор языка",
+      "closeLabel": "Закрыть заметку",
+      "noteListLabel": "Заметки кампании",
+      "campaignLabel": "21 Days to Life",
+      "notFoundTitle": "Не найдено.",
+      "notFoundBody": "Эта страница недоступна."
+    }
+  },
+  "seo": {
+    "en": { "siteTitle": "Along - 21 Days to Life", "description": "Along is preparing a new way to discover people, places and moments around you." },
+    "es": { "siteTitle": "Along - 21 Days to Life", "description": "Along prepara una nueva forma de descubrir personas, lugares y momentos a tu alrededor." },
+    "ru": { "siteTitle": "Along - 21 Days to Life", "description": "Along готовит новый способ замечать людей, места и моменты вокруг тебя." }
+  },
+  "notes": {
+    "en": [
+      {
+        "title": "Hello, Along.",
+        "accent": "21 days.",
+        "tapLabel": "tap to read →",
+        "body": ["We're creating Along not so you spend more time on your phone.", "But so there is more worth doing beyond it."],
+        "emphasis": ["21 days."],
+        "returnLine": "Come back in three days."
+      },
+      {
+        "title": "What's happening nearby?",
+        "accent": "\"Coffee after work?\"",
+        "tapLabel": "tap to read →",
+        "body": ["Someone is going for a run.", "Someone is looking for company for a concert.", "Someone simply wrote:", "\"Coffee after work?\"", "Maybe someone has already imagined your evening today.", "Along helps you notice it."],
+        "emphasis": ["\"Coffee after work?\"", "Along helps you notice it."],
+        "cta": "See what's happening nearby →"
+      },
+      {
+        "title": "The city is already alive.",
+        "accent": "City Is The Main Character.",
+        "tapLabel": "tap to read →",
+        "body": ["A city is more than streets, buildings and places.", "It is people who, right now, are going somewhere, making plans and ready to say:", "\"Come with me?\"", "Along helps you see the life of the city around you."],
+        "emphasis": ["\"Come with me?\"", "City Is The Main Character."],
+        "cta": "Feel the city →",
+        "tagline": "City Is The Main Character."
+      },
+      {
+        "title": "Maybe together?",
+        "accent": "AI Helps Humans Meet Humans.",
+        "tapLabel": "tap to read →",
+        "body": ["Sometimes someone nearby wants exactly what you do.", "Take a walk.", "Listen to music.", "Go for a ride.", "Have coffee.", "Or simply not spend the evening at home.", "Along helps you notice each other."],
+        "emphasis": ["Along helps you notice each other.", "AI Helps Humans Meet Humans."],
+        "cta": "See who's nearby →",
+        "tagline": "AI Helps Humans Meet Humans."
+      },
+      {
+        "title": "The city has a mood.",
+        "accent": "Feel the atmosphere.",
+        "tapLabel": "tap to read →",
+        "body": ["Sometimes you want a lively evening.", "Sometimes—a small coffee shop.", "Sometimes—a long walk.", "And sometimes—a place only locals know.", "Along looks for more than places.", "Along helps you feel the atmosphere."],
+        "emphasis": ["Along helps you feel the atmosphere."],
+        "cta": "Feel the city differently →"
+      },
+      {
+        "title": "The evening ended. The moment stayed.",
+        "accent": "Moments become Memory.",
+        "tapLabel": "tap to read →",
+        "body": ["You simply decided to meet.", "Then you went somewhere.", "You talked. You laughed. Maybe you met someone new.", "An ordinary evening became a story."],
+        "emphasis": ["Moments become Memory."],
+        "cta": "Keep what you want to remember →",
+        "tagline": "Moments become Memory."
+      },
+      {
+        "title": "One Click. One Emotion.",
+        "accent": "More Life. Less Screen.",
+        "tapLabel": "tap to read →",
+        "body": ["We could have made an app where you spend more time.", "We decided to do the opposite.", "Open Along.", "Find a person, a place or a moment.", "Then close Along.", "Go live."],
+        "emphasis": ["Go live.", "More Life. Less Screen.", "3 days."],
+        "tagline": "More Life. Less Screen.",
+        "returnLine": "3 days."
+      }
+    ],
+    "es": [
+      {
+        "title": "Hola, Along.",
+        "accent": "21 días.",
+        "tapLabel": "toca para leer →",
+        "body": ["Estamos creando Along no para que pases más tiempo en el teléfono.", "Sino para que haya más cosas interesantes fuera de él."],
+        "emphasis": ["21 días."],
+        "returnLine": "Vuelve dentro de tres días."
+      },
+      {
+        "title": "¿Qué está pasando cerca?",
+        "accent": "«¿Un café después del trabajo?»",
+        "tapLabel": "toca para leer →",
+        "body": ["Alguien va a salir a correr.", "Alguien busca compañía para ir a un concierto.", "Alguien simplemente escribió:", "«¿Un café después del trabajo?»", "Quizá alguien ya imaginó cómo podría ser tu tarde de hoy.", "Along te ayuda a descubrirlo."],
+        "emphasis": ["«¿Un café después del trabajo?»", "Along te ayuda a descubrirlo."],
+        "cta": "Ver qué está pasando cerca →"
+      },
+      {
+        "title": "La ciudad ya está viva.",
+        "accent": "City Is The Main Character.",
+        "tapLabel": "toca para leer →",
+        "body": ["Una ciudad no es solo calles, edificios y lugares.", "Son personas que, ahora mismo, van a algún sitio, hacen planes y están dispuestas a decir:", "«¿Vienes conmigo?»", "Along te ayuda a ver la vida de la ciudad a tu alrededor."],
+        "emphasis": ["«¿Vienes conmigo?»", "City Is The Main Character."],
+        "cta": "Sentir la ciudad →",
+        "tagline": "City Is The Main Character."
+      },
+      {
+        "title": "¿Quizá juntos?",
+        "accent": "AI Helps Humans Meet Humans.",
+        "tapLabel": "toca para leer →",
+        "body": ["A veces alguien cerca quiere exactamente lo mismo que tú.", "Dar un paseo.", "Escuchar música.", "Salir a dar una vuelta.", "Tomar un café.", "O simplemente no pasar la tarde en casa.", "Along les ayuda a encontrarse."],
+        "emphasis": ["Along les ayuda a encontrarse.", "AI Helps Humans Meet Humans."],
+        "cta": "Ver quién está cerca →",
+        "tagline": "AI Helps Humans Meet Humans."
+      },
+      {
+        "title": "La ciudad tiene un estado de ánimo.",
+        "accent": "Sentir la atmósfera.",
+        "tapLabel": "toca para leer →",
+        "body": ["A veces apetece una tarde animada.", "A veces, una pequeña cafetería.", "A veces, un paseo largo.", "Y a veces, un lugar que solo conocen quienes viven allí.", "Along no busca simplemente lugares.", "Along te ayuda a sentir la atmósfera."],
+        "emphasis": ["Along te ayuda a sentir la atmósfera."],
+        "cta": "Sentir la ciudad de otra manera →"
+      },
+      {
+        "title": "La tarde terminó. El momento permaneció.",
+        "accent": "Moments become Memory.",
+        "tapLabel": "toca para leer →",
+        "body": ["Simplemente decidieron encontrarse.", "Después fueron a algún sitio.", "Hablaron. Se rieron. Quizá conocieron a alguien nuevo.", "Una tarde cualquiera se convirtió en una historia."],
+        "emphasis": ["Moments become Memory."],
+        "cta": "Guardar lo que quieres recordar →",
+        "tagline": "Moments become Memory."
+      },
+      {
+        "title": "One Click. One Emotion.",
+        "accent": "More Life. Less Screen.",
+        "tapLabel": "toca para leer →",
+        "body": ["Podríamos haber creado una aplicación en la que pasaras más tiempo.", "Decidimos hacer lo contrario.", "Abre Along.", "Encuentra una persona, un lugar o un momento.", "Y cierra Along.", "Sal a vivir."],
+        "emphasis": ["Sal a vivir.", "More Life. Less Screen.", "3 días."],
+        "tagline": "More Life. Less Screen.",
+        "returnLine": "3 días."
+      }
+    ],
+    "ru": [
+      {
+        "title": "Hello, Along.",
+        "accent": "21 день.",
+        "tapLabel": "нажми →",
+        "body": ["Мы создаём Along не для того, чтобы ты проводил больше времени в телефоне.", "А чтобы интересного становилось больше за его пределами."],
+        "emphasis": ["21 день."],
+        "returnLine": "Загляни снова через три дня."
+      },
+      {
+        "title": "Что происходит рядом?",
+        "accent": "«Кофе после работы?»",
+        "tapLabel": "нажми →",
+        "body": ["Кто-то собирается на пробежку.", "Кто-то ищет компанию на концерт.", "Кто-то просто написал:", "«Кофе после работы?»", "Возможно, твой сегодняшний вечер уже кто-то придумал.", "Along помогает это заметить."],
+        "emphasis": ["«Кофе после работы?»", "Along помогает это заметить."],
+        "cta": "Посмотреть, что происходит рядом →"
+      },
+      {
+        "title": "Город уже живёт.",
+        "accent": "City Is The Main Character.",
+        "tapLabel": "нажми →",
+        "body": ["Город — это не только улицы, здания и места.", "Это люди, которые прямо сейчас куда-то идут, что-то придумывают и готовы сказать:", "«Пойдём со мной?»", "Along помогает увидеть жизнь города вокруг тебя."],
+        "emphasis": ["«Пойдём со мной?»", "City Is The Main Character."],
+        "cta": "Почувствовать город →",
+        "tagline": "City Is The Main Character."
+      },
+      {
+        "title": "Может быть, вместе?",
+        "accent": "AI Helps Humans Meet Humans.",
+        "tapLabel": "нажми →",
+        "body": ["Иногда человеку рядом хочется ровно того же, чего и тебе.", "Пройтись.", "Послушать музыку.", "Покататься.", "Выпить кофе.", "Или просто не провести вечер дома.", "Along помогает вам заметить друг друга."],
+        "emphasis": ["Along помогает вам заметить друг друга.", "AI Helps Humans Meet Humans."],
+        "cta": "Увидеть, кто рядом →",
+        "tagline": "AI Helps Humans Meet Humans."
+      },
+      {
+        "title": "У города есть настроение.",
+        "accent": "Почувствовать атмосферу.",
+        "tapLabel": "нажми →",
+        "body": ["Иногда хочется шумного вечера.", "Иногда — маленькой кофейни.", "Иногда — долгой прогулки.", "А иногда — места, о котором знают только местные.", "Along ищет не просто места.", "Along помогает почувствовать атмосферу."],
+        "emphasis": ["Along помогает почувствовать атмосферу."],
+        "cta": "Почувствовать город иначе →"
+      },
+      {
+        "title": "Вечер закончился. Момент остался.",
+        "accent": "Moments become Memory.",
+        "tapLabel": "нажми →",
+        "body": ["Вы просто решили встретиться.", "Потом куда-то пошли.", "Разговаривали. Смеялись. Возможно, познакомились с кем-то новым.", "Обычный вечер стал историей."],
+        "emphasis": ["Moments become Memory."],
+        "cta": "Сохранить то, что хочется помнить →",
+        "tagline": "Moments become Memory."
+      },
+      {
+        "title": "One Click. One Emotion.",
+        "accent": "More Life. Less Screen.",
+        "tapLabel": "нажми →",
+        "body": ["Мы могли сделать приложение, в котором ты проводишь больше времени.", "Мы решили сделать наоборот.", "Открой Along.", "Найди человека, место или момент.", "И закрой Along.", "Иди жить."],
+        "emphasis": ["Иди жить.", "More Life. Less Screen.", "3 дня."],
+        "tagline": "More Life. Less Screen.",
+        "returnLine": "3 дня."
+      }
+    ]
+  },
+  "launch": {
+    "en": {
+      "title": "Hello, city.",
+      "kicker": "The city is already alive.",
+      "body": "See what's happening around you right now.",
+      "primaryCta": "What's happening today? →",
+      "secondaryCta": "Open Along"
+    },
+    "es": {
+      "title": "Hola, ciudad.",
+      "kicker": "La ciudad ya está viva.",
+      "body": "Descubre qué está pasando a tu alrededor ahora mismo.",
+      "primaryCta": "¿Qué está pasando hoy? →",
+      "secondaryCta": "Abrir Along"
+    },
+    "ru": {
+      "title": "Привет, город.",
+      "kicker": "Город уже живёт.",
+      "body": "Посмотри, что происходит рядом прямо сейчас.",
+      "primaryCta": "Что происходит сегодня? →",
+      "secondaryCta": "Открыть Along"
+    }
+  }
+}

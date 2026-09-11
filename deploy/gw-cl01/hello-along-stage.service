@@ -1,0 +1,13 @@
+[Unit]
+Description=Activate the latest unlocked hello-along campaign stage
+Wants=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+Environment=SITE_ROOT=/opt/home-dc/edge/sites/hello-along
+Environment=RELEASES_ROOT=/opt/home-dc/edge/releases/hello-along
+Environment=COMPOSE_FILE=/opt/home-dc/edge/compose.yaml
+Environment=SERVICE_NAME=edge-hello-along
+Environment=HEALTH_URL=http://127.0.0.1/
+ExecStart=/opt/home-dc/edge/bin/along-stage-scheduler.sh

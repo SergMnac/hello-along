@@ -1,0 +1,25 @@
+{
+  "stageId": "t-15",
+  "unlockAt": "2026-09-16T00:00:00Z",
+  "sourceCommit": "cee2593a2be422a45333620182c95b29c737428f",
+  "contentHash": "393be71486c354f3b9a28b47402ecbbd76a8b44241bf84022ef29d2350cf0efe",
+  "routes": [
+    "/",
+    "/en/",
+    "/es/",
+    "/ru/",
+    "/discover/hello/",
+    "/en/discover/hello/",
+    "/es/discover/hello/",
+    "/ru/discover/hello/",
+    "/discover/events/",
+    "/en/discover/events/",
+    "/es/discover/events/",
+    "/ru/discover/events/",
+    "/discover/city/",
+    "/en/discover/city/",
+    "/es/discover/city/",
+    "/ru/discover/city/"
+  ],
+  "generatedAt": "2026-09-11T18:25:04.175Z"
+}
