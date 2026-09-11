@@ -407,3 +407,120 @@ Scheduler timer state:
 - Next trigger: none.
 
 Stopped at restricted Owner confirmation gate. No rollback proof was performed.
+
+## DEP-001 Correction 1 — Owner mobile-only clarification
+
+Status: `READY FOR RESTRICTED OWNER CONFIRMATION — MOBILE ONLY`
+
+Scope:
+
+- Continued the existing `AL-WEB-PL-DEP-001 — CORRECTION 1`.
+- Mobile-only owner defect: real mobile resting note overlapped the canonical Along wordmark.
+- Desktop full screen and desktop browser-resize composition were already accepted and were not changed.
+- Scheduler timer was not installed or enabled.
+- Rollback proof was not performed.
+
+Pre-change production cache/build confirmation:
+
+- Active production target before mobile-only fix: `/opt/home-dc/edge/releases/hello-along-a068be82bdf4/t-21/public`
+- Active production hash before mobile-only fix: `7ddd9be6ec1a88aca64746b0b9a6e17345c9db3fbbfdf782d9d8335a7a607c19`
+- Served production assets before mobile-only fix:
+  - `assets/index-BboSt6ln.css`
+  - `assets/index-CeVUvrPw.js`
+- Public CSS response before mobile-only fix: `200`, `ETag "6aa4619e-185e"`, `Last-Modified Fri, 11 Sep 2026 20:16:30 GMT`
+- Conclusion: owner mobile failure was not treated as stale production assets; production was confirmed to be serving the previous corrected build before code change.
+
+Changed source files:
+
+- `src/styles.css`
+
+Source change:
+
+- In the mobile media branch only, `.note-card-1` moved from `left: 27%; top: 31%;` to `left: 8%; top: 12%;`.
+- Desktop and intermediate viewport rules were not changed.
+- Technical `T-21`, date or stage labels were not reintroduced.
+
+Corrected source:
+
+- Mobile correction branch: `al-web-pl-dep-001-correction-1-mobile`
+- Mobile correction commit: `6e7a65a` (`fix: separate mobile t21 note from logo`)
+- Final remote main merge commit: `d9b45bb19537f4157431c45d981f297b47993ecb`
+
+Checks:
+
+- Source checkout:
+  - `npm test`: passed; 4 files, 30 tests.
+  - `npm run lint`: passed.
+  - `npx tsc --noEmit`: passed.
+  - `npm run build`: passed.
+  - `npm run scan:leaks`: passed.
+- Exact final remote main LF checkout at `d9b45bb19537f4157431c45d981f297b47993ecb`:
+  - `npm ci`: passed; npm reported existing peer/audit warnings.
+  - `npm test`: passed; 1 file, 10 tests.
+  - `npm run lint`: passed.
+  - `npx tsc --noEmit`: passed.
+  - `npm run build`: passed.
+  - `npm run build:stages`: passed.
+  - `npm run scan:leaks`: passed.
+  - `npm run scan:stage-leaks`: passed.
+  - `npm run test:scheduler`: passed.
+
+Mobile evidence:
+
+- Local mobile CDP evidence path: `artifacts/release-preflight/dep-correction-1/mobile-only/mobile-cdp-results.json`
+- Production mobile CDP evidence path: `artifacts/release-preflight/dep-correction-1-mobile/mobile-production/mobile-production-cdp-results.json`
+- Production screenshot directory: `artifacts/release-preflight/dep-correction-1-mobile/mobile-production/`
+- Production visual viewport checks:
+  - `iphone-390x844-full`: note/logo `overlaps=false`, note `28.95..175.42 x 96.40..175.17`, logo `125..265 x 326.09..386.36`
+  - `iphone-390x740-browser-chrome`: note/logo `overlaps=false`, note `28.95..175.42 x 83.93..162.70`, logo `125..265 x 274.09..334.36`
+  - `iphone-390x680-reduced-visual`: note/logo `overlaps=false`, note `28.95..175.42 x 76.73..155.49`, logo `125..265 x 244.09..304.36`
+  - `android-360x740`: note/logo `overlaps=false`, note `26.56..173.03 x 83.93..162.70`, logo `110..250 x 274.09..334.36`
+- Production hit target at note center: `.note-accent`
+- Production tap/open/close:
+  - EN: opened `true`, closed `true`
+  - ES: opened `true`, closed `true`
+  - RU: opened `true`, closed `true`
+
+Corrected mobile release:
+
+- Local corrected package root: `artifacts/release-preflight/dep-correction-1-mobile/release-d9b45bb19537`
+- Server upload temp: `/tmp/hello-along-dep-mobile-d9b45bb19537`
+- Server package SHA-256 verification: all eight corrected packages OK before extraction.
+- Corrected immutable release root: `/opt/home-dc/edge/releases/hello-along-d9b45bb19537`
+- Scheduler `verify` with `EXPECTED_SOURCE_COMMIT=d9b45bb19537f4157431c45d981f297b47993ecb`: `All hello-along releases verified`
+- Scheduler-selected stage: `t-21`
+- Corrected active release path: `/opt/home-dc/edge/releases/hello-along-d9b45bb19537/t-21/public`
+- Corrected active release hash: `6f39fdf5696365e2c68bba50b13dc903da0acee00cf06c8e59e320095cca56f2`
+
+Activation:
+
+- Before target: `/opt/home-dc/edge/releases/hello-along-a068be82bdf4/t-21/public`
+- After target: `/opt/home-dc/edge/releases/hello-along-d9b45bb19537/t-21/public`
+- Recreated service: `edge-hello-along` only.
+- Container health after activation: `healthy`
+
+Public route checks after mobile correction:
+
+| route | HTTPS status |
+| --- | --- |
+| `/` | 200 |
+| `/en/` | 200 |
+| `/es/` | 200 |
+| `/ru/` | 200 |
+| `/discover/hello/` | 200 |
+| `/en/discover/hello/` | 200 |
+| `/es/discover/hello/` | 200 |
+| `/ru/discover/hello/` | 200 |
+| `/discover/events/` | 404 |
+| `/en/discover/events/` | 404 |
+| `/es/discover/events/` | 404 |
+| `/ru/discover/events/` | 404 |
+
+Scheduler timer state after mobile correction:
+
+- `hello-along-stage.service`: not installed.
+- `hello-along-stage.timer`: not installed.
+- Timer enabled: no.
+- Next trigger: none.
+
+Stopped at restricted Owner mobile confirmation gate. No rollback proof was performed.
