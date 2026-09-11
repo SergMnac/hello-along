@@ -76,6 +76,27 @@ describe('campaign routing', () => {
 });
 
 describe('note interaction', () => {
+  it('opens and closes the T-21 full reading state for every locale', () => {
+    locales.forEach((locale) => {
+      const { unmount } = render(<UnderConstructionPage locale={locale} />);
+      const note = campaignData.notes[locale][0];
+      const trigger = screen.getByRole('button', { name: new RegExp(note.title, 'i') });
+
+      fireEvent.click(trigger);
+      expect(screen.getByRole('dialog')).toBeTruthy();
+      expect(screen.getByText(note.body[0])).toBeTruthy();
+      expect(screen.queryByText(/^T-\d+/)).toBeNull();
+      fireEvent.click(screen.getByRole('button', { name: campaignData.base[locale].closeLabel }));
+      expect(screen.queryByRole('dialog')).toBeNull();
+
+      fireEvent.keyDown(trigger, { key: ' ' });
+      expect(screen.getByRole('dialog')).toBeTruthy();
+      fireEvent.keyDown(window, { key: 'Escape' });
+      expect(screen.queryByRole('dialog')).toBeNull();
+      unmount();
+    });
+  });
+
   it('opens with keyboard and closes with Escape and outside click', () => {
     render(<UnderConstructionPage locale="en" />);
     const trigger = screen.getByRole('button', { name: /Hello, Along/i });
