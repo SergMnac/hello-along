@@ -1,6 +1,6 @@
 # AL-WEB-PL-DEP-001 Report
 
-Status: PARTIAL
+Status: PRODUCTION ACTIVE - SCHEDULER NOT ENABLED
 
 ## Scope
 
@@ -143,8 +143,132 @@ When SSH access is stable again:
 9. Activate the scheduler-selected current stage.
 10. Stop for Owner visual review before enabling any timer.
 
+## Resume After Infrastructure Interruption
+
+Resume authorization accepted the previous state as:
+
+`PARTIAL - SAFE TO RESUME SAME DEP-001`
+
+Resume prechecks on `2026-09-11T19:19:03Z`:
+
+- SSH access to `GW-CL01`: restored and stable for the resume window.
+- `edge-hello-along`: running, healthy.
+- `edge-stvk`: running, healthy.
+- `edge-traefik`: running.
+- `/opt/home-dc/edge/sites/hello-along`: still pointed to the original production directory before resumed activation work.
+- Live baseline integrity:
+  - path: `/opt/home-dc/edge/releases/hello-along/baseline/public.sha256`
+  - expected hash: `c00edd51169ae0a1e78d575391d42c7c85a277bcc2fe46baa66cbf99b47f3190`
+  - actual hash: `c00edd51169ae0a1e78d575391d42c7c85a277bcc2fe46baa66cbf99b47f3190`
+  - `sha256sum -c public.sha256`: OK
+
+Temporary upload cleanup:
+
+- Inspected only `/tmp/hello-along-dep-f3c2cc598163`.
+- Removed only incomplete temporary package:
+  - `/tmp/hello-along-dep-f3c2cc598163/packages/hello-along-t-12-f3c2cc598163.tar.gz`
+- Re-uploaded missing packages and scheduler script through SFTP.
+
+Server-side package verification before extraction:
+
+- `hello-along-t-21-f3c2cc598163.tar.gz`: OK
+- `hello-along-t-18-f3c2cc598163.tar.gz`: OK
+- `hello-along-t-15-f3c2cc598163.tar.gz`: OK
+- `hello-along-t-12-f3c2cc598163.tar.gz`: OK
+- `hello-along-t-9-f3c2cc598163.tar.gz`: OK
+- `hello-along-t-6-f3c2cc598163.tar.gz`: OK
+- `hello-along-t-3-f3c2cc598163.tar.gz`: OK
+- `hello-along-t-0-f3c2cc598163.tar.gz`: OK
+
+Immutable stage releases extracted and verified:
+
+| stage | release path | `public.sha256` hash | route count |
+| --- | --- | --- | --- |
+| `t-21` | `/opt/home-dc/edge/releases/hello-along/t-21` | `1f656ade3901e3e3458b763f9bf3132094da1d4ec3f696be4363b01827ea0f82` | 8 |
+| `t-18` | `/opt/home-dc/edge/releases/hello-along/t-18` | `208771f5b4d0d0229f6bc183c80174ec66d586d9ae90985dc4e6c4fc38879e5b` | 12 |
+| `t-15` | `/opt/home-dc/edge/releases/hello-along/t-15` | `1b980b95ff6fb482d817c5dcc0f356b6c93a4936c02e846b4e71e847cb832b66` | 16 |
+| `t-12` | `/opt/home-dc/edge/releases/hello-along/t-12` | `6bcd86d13762ca2fac6e556925c080f36f166a342d652cec4747a88e6484752e` | 20 |
+| `t-9` | `/opt/home-dc/edge/releases/hello-along/t-9` | `d349212590ae189d8a50e7346de51695438547d8e980fe8ecddfd48b86fc7830` | 24 |
+| `t-6` | `/opt/home-dc/edge/releases/hello-along/t-6` | `ddf349d91e2340033d62a19e8051d3e5555c64de96b0a12a60f065d187ac1211` | 28 |
+| `t-3` | `/opt/home-dc/edge/releases/hello-along/t-3` | `f2c34daddd71da74fa0a6d7e6c9099084b17c09d483a2102e5585d15d83e7040` | 32 |
+| `t-0` | `/opt/home-dc/edge/releases/hello-along/t-0` | `4d37fb94c5e1f15d152ee13e3affb3eac5f7e54817cd689e191892c86f7fd057` | 32 |
+
+Installed approved scheduler script:
+
+- Path: `/opt/home-dc/edge/bin/along-stage-scheduler.sh`
+- SHA-256: `f4f139042a5db493b085e2019afb0895f53f5cb0da9a91b4078d9e7720219bfa`
+- Permissions: installed as executable root-owned file.
+
+Scheduler verification:
+
+- `All hello-along releases verified`
+- Scheduler-selected stage: `t-21`
+- Reason: `2026-09-11` UTC is after `2026-09-10T00:00:00Z` and before `2026-09-13T00:00:00Z`.
+
+Activation evidence:
+
+- First activation attempt used a Traefik HTTP health command and failed closed because that command returned `404`.
+- The scheduler restored verified baseline, recreated only `edge-hello-along`, and stopped with an activation error.
+- Post-failure state:
+  - `/opt/home-dc/edge/sites/hello-along` symlink target: `/opt/home-dc/edge/releases/hello-along/baseline/public`
+  - `edge-hello-along`: running, healthy
+- Second activation used Docker container health as the scheduler health command.
+- Result: `Activated hello-along t-21`
+- Public path target after activation: `/opt/home-dc/edge/releases/hello-along/t-21/public`
+- Public path type after activation: symlink
+- Active release hash: `1f656ade3901e3e3458b763f9bf3132094da1d4ec3f696be4363b01827ea0f82`
+- Recreated service: `edge-hello-along` only.
+- Container health after activation: `running healthy`
+
+Route checks after activation:
+
+| route | HTTPS status |
+| --- | --- |
+| `/` | 200 |
+| `/en/` | 200 |
+| `/es/` | 200 |
+| `/ru/` | 200 |
+| `/discover/hello/` | 200 |
+| `/en/discover/hello/` | 200 |
+| `/es/discover/hello/` | 200 |
+| `/ru/discover/hello/` | 200 |
+| `/discover/events/` | 404 |
+| `/en/discover/events/` | 404 |
+| `/es/discover/events/` | 404 |
+| `/ru/discover/events/` | 404 |
+
+Asset checks:
+
+- `https://hello-along.com/logo/along-logo-dark.svg`: 200
+- `https://hello-along.com/assets/background-image@2x.webp`: 200
+
+Owner Adjustment 01 smoke check:
+
+- Technical stage labels in top-level fetched HTML: not found.
+- Note: semantic `21 days` text is client-rendered and must be visually checked by Owner in browser.
+
+Scheduler timer state:
+
+- `hello-along-stage.service`: not installed.
+- `hello-along-stage.timer`: not installed.
+- Timer enabled: no.
+- Next trigger: none.
+
+## Owner Visual Review Gate
+
+Stopped for Owner visual review as required.
+
+- Public URL: `https://hello-along.com/`
+- Active stage: `t-21`
+- Active release path: `/opt/home-dc/edge/releases/hello-along/t-21/public`
+- Public-path target: `/opt/home-dc/edge/releases/hello-along/t-21/public`
+- Active release hash: `1f656ade3901e3e3458b763f9bf3132094da1d4ec3f696be4363b01827ea0f82`
+- Container health: `edge-hello-along` running, healthy
+
+Rollback proof was not executed. Scheduler service/timer was not installed or enabled. DEP-001 must resume only after explicit Owner visual confirmation.
+
 ## Final Status
 
-PARTIAL.
+PRODUCTION ACTIVE - SCHEDULER NOT ENABLED.
 
-NO public activation was performed. NO scheduler timer was enabled.
+NO rollback proof was performed yet. NO scheduler timer was enabled.
