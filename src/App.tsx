@@ -1,44 +1,80 @@
 import { useEffect, useMemo } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import UnderConstructionPage from './UnderConstructionPage';
+import { isRevealSlug } from './campaign/reveals';
+import type { Locale } from './campaign/types';
 
-const localeMap: Record<string, 'en' | 'es' | 'ru'> = {
-  en: 'en',
-  es: 'es',
-  ru: 'ru',
+const locales: Locale[] = ['en', 'es', 'ru'];
+
+const isLocale = (value: string): value is Locale => locales.includes(value as Locale);
+
+const detectPreferredLocale = (): Locale => {
+  if (typeof window === 'undefined') return 'en';
+  try {
+    const stored = localStorage.getItem('along-language');
+    if (stored && isLocale(stored)) return stored;
+  } catch {
+    // Storage can be unavailable in isolated test or privacy contexts.
+  }
+  const language = navigator.language.toLowerCase();
+  if (language.startsWith('es')) return 'es';
+  if (language.startsWith('ru')) return 'ru';
+  return 'en';
 };
 
-const detectPreferredLocale = () => {
-  if (typeof window === 'undefined') return 'en';
-  const stored = localStorage.getItem('along-language');
-  if (stored && localeMap[stored]) return stored as 'en' | 'es' | 'ru';
+export interface RouteContext {
+  locale: Locale;
+  revealSlug?: string;
+  notFound: boolean;
+}
 
-  const nav = navigator.language || navigator.userLanguage || 'en';
-  const lower = nav.toLowerCase();
-  if (lower.startsWith('es')) return 'es';
-  if (lower.startsWith('ru')) return 'ru';
-  return 'en';
+export const getRouteContext = (pathname: string): RouteContext => {
+  const parts = pathname.split('/').filter(Boolean);
+  let locale = detectPreferredLocale();
+  let cursor = 0;
+
+  if (parts[0] && isLocale(parts[0])) {
+    locale = parts[0];
+    cursor = 1;
+  }
+
+  if (parts.length === cursor) return { locale, notFound: false };
+
+  if (parts[cursor] === 'discover') {
+    const slug = parts[cursor + 1];
+    const clean = parts.length === cursor + 2 && slug && isRevealSlug(slug);
+    return { locale, revealSlug: clean ? slug : undefined, notFound: !clean };
+  }
+
+  return { locale, notFound: true };
 };
 
 function App() {
   const location = useLocation();
-  const currentLocale = useMemo<'en' | 'es' | 'ru'>(() => {
-    const path = location.pathname.replace(/^\//, '');
-    if (path === '') return 'en';
-    if (path === 'en') return 'en';
-    if (path === 'es') return 'es';
-    if (path === 'ru') return 'ru';
-    return detectPreferredLocale();
-  }, [location.pathname]);
+  const route = useMemo(() => getRouteContext(location.pathname), [location.pathname]);
 
   useEffect(() => {
-    document.documentElement.lang = currentLocale;
-  }, [currentLocale]);
+    document.documentElement.lang = route.locale;
+    try {
+      localStorage.setItem('along-language', route.locale);
+    } catch {
+      // Ignore unavailable storage; route locale remains authoritative.
+    }
+  }, [route.locale]);
 
   return (
     <Routes>
-      <Route path="/" element={<UnderConstructionPage locale={currentLocale} />} />
-      <Route path="/:lang" element={<UnderConstructionPage locale={currentLocale} />} />
+      <Route
+        path="*"
+        element={
+          <UnderConstructionPage
+            locale={route.locale}
+            revealSlug={route.revealSlug}
+            notFound={route.notFound}
+            pathname={location.pathname}
+          />
+        }
+      />
     </Routes>
   );
 }

@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/create-route-entrypoints.mjs",
+    "scan:leaks": "node scripts/stage-leakage-scan.mjs dist",
     "preview": "vite preview --host 0.0.0.0",
     "lint": "eslint . --ext .js,.ts,.jsx,.tsx",
     "test": "vitest run"
