@@ -1,8 +1,7 @@
 import { KeyboardEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { emitAnalytics, markRepeatVisit } from './campaign/analytics';
 import { CAMPAIGN_PAYLOAD } from './campaign/generatedCampaign';
-import { getRevealIndex, REVEAL_SLUGS } from './campaign/reveals';
-import { getStageIndex } from './campaign/schedule';
+import { getRevealIndex } from './campaign/reveals';
 import type { Locale, LocalizedNote } from './campaign/types';
 
 interface Props {
@@ -13,6 +12,7 @@ interface Props {
 }
 
 const locales: Locale[] = ['en', 'es', 'ru'];
+const origin = 'https://hello-along.com';
 
 const languagePath = (locale: Locale, pathname: string) => {
   const parts = pathname.split('/').filter(Boolean);
@@ -21,12 +21,19 @@ const languagePath = (locale: Locale, pathname: string) => {
   return locale === 'en' ? suffix || '/en' : `/${locale}${suffix}`;
 };
 
+const canonicalPath = (locale: Locale, pathname: string) => {
+  const path = languagePath(locale, pathname);
+  return path.endsWith('/') ? path : `${path}/`;
+};
+
+const revealHref = (locale: Locale, slug: string) => (locale === 'en' ? `/discover/${slug}/` : `/${locale}/discover/${slug}/`);
+
 const UnderConstructionPage = ({ locale, revealSlug, notFound = false, pathname = '/' }: Props) => {
   const copy = CAMPAIGN_PAYLOAD.copy;
   const base = copy.base[locale];
   const notes = copy.notes[locale];
   const launch = copy.launch?.[locale];
-  const stageIndex = getStageIndex(CAMPAIGN_PAYLOAD.stage.id);
+  const slugs = CAMPAIGN_PAYLOAD.slugs;
   const requestedRevealIndex = revealSlug ? getRevealIndex(revealSlug as never) : -1;
   const isLaunch = CAMPAIGN_PAYLOAD.stage.id === 't-0' && Boolean(launch);
   const [openIndex, setOpenIndex] = useState<number | null>(
@@ -37,13 +44,29 @@ const UnderConstructionPage = ({ locale, revealSlug, notFound = false, pathname 
   const activeNote = openIndex === null ? null : notes[openIndex];
 
   useEffect(() => {
-    document.title = 'Along - 21 Days to Life';
-    document.querySelector('meta[name=description]')?.setAttribute('content', `${base.atmospheric} ${base.subtitle}`);
+    document.title = CAMPAIGN_PAYLOAD.seo[locale].siteTitle;
+    document.querySelector('meta[name=description]')?.setAttribute('content', CAMPAIGN_PAYLOAD.seo[locale].description);
     const canonical = document.querySelector('link[rel=canonical]') || document.createElement('link');
     canonical.setAttribute('rel', 'canonical');
-    canonical.setAttribute('href', pathname || '/');
+    canonical.setAttribute('href', `${origin}${canonicalPath(locale, pathname)}`);
     if (!document.head.contains(canonical)) document.head.appendChild(canonical);
-  }, [base.atmospheric, base.subtitle, pathname]);
+
+    document.querySelectorAll('link[data-along-hreflang="true"]').forEach((node) => node.remove());
+    for (const targetLocale of locales) {
+      const link = document.createElement('link');
+      link.setAttribute('rel', 'alternate');
+      link.setAttribute('hreflang', targetLocale);
+      link.setAttribute('href', `${origin}${canonicalPath(targetLocale, pathname)}`);
+      link.setAttribute('data-along-hreflang', 'true');
+      document.head.appendChild(link);
+    }
+    const defaultLink = document.createElement('link');
+    defaultLink.setAttribute('rel', 'alternate');
+    defaultLink.setAttribute('hreflang', 'x-default');
+    defaultLink.setAttribute('href', `${origin}${canonicalPath('en', pathname).replace(/^\/en\//, '/')}`);
+    defaultLink.setAttribute('data-along-hreflang', 'true');
+    document.head.appendChild(defaultLink);
+  }, [locale, pathname]);
 
   useEffect(() => {
     emitAnalytics('uc_view', { locale, stage: CAMPAIGN_PAYLOAD.stage.id });
@@ -117,9 +140,12 @@ const UnderConstructionPage = ({ locale, revealSlug, notFound = false, pathname 
         ))}
       </nav>
 
+      <div className="countdown-badge" aria-label={`${CAMPAIGN_PAYLOAD.stage.label} ${CAMPAIGN_PAYLOAD.stage.shortDate}`}>
+        {CAMPAIGN_PAYLOAD.stage.label} · {CAMPAIGN_PAYLOAD.stage.shortDate}
+      </div>
+
       <section className="intro-panel">
         <img src="/logo/along-logo-dark.svg" alt="Along" className="brand-logo" />
-        <p className="campaign-kicker">{base.campaignLabel}</p>
         <h1>{isLaunch && launch ? launch.title : base.atmospheric}</h1>
         <p>{isLaunch && launch ? launch.body : base.subtitle}</p>
       </section>
@@ -145,15 +171,10 @@ const UnderConstructionPage = ({ locale, revealSlug, notFound = false, pathname 
       ) : null}
 
       <section className="campaign-wall" aria-label={base.noteListLabel}>
-        <div className="stage-rail" aria-hidden="true">
-          {CAMPAIGN_PAYLOAD.stages.map((stage, index) => (
-            <span className={index <= stageIndex ? 'stage-dot unlocked' : 'stage-dot'} key={stage.id} />
-          ))}
-        </div>
         {notes.map((note, index) => (
           <button
             type="button"
-            className="note-card"
+            className={`note-card note-card-${index + 1}`}
             key={note.title}
             onClick={(event) => openModal(note, index, event.currentTarget)}
             onKeyDown={(event) => onCardKeyDown(event, note, index)}
@@ -182,10 +203,11 @@ const UnderConstructionPage = ({ locale, revealSlug, notFound = false, pathname 
             {activeNote.body.map((line) => (
               <p key={line} className={activeNote.emphasis?.includes(line) ? 'emphasis-line' : undefined}>{line}</p>
             ))}
+            {activeNote.tagline ? <p className="emphasis-line">{activeNote.tagline}</p> : null}
             {activeNote.returnLine ? <p className="return-line">{activeNote.returnLine}</p> : null}
             {activeNote.cta ? (
               <a
-                href={`/discover/${REVEAL_SLUGS[Math.min(openIndex ?? 0, REVEAL_SLUGS.length - 1)]}/`}
+                href={revealHref(locale, slugs[Math.min(openIndex ?? 0, slugs.length - 1)])}
                 className="modal-cta"
                 onClick={() => emitAnalytics('cta_click', { locale, index: (openIndex ?? 0) + 1 })}
               >

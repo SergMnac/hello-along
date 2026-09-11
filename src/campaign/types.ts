@@ -16,6 +16,7 @@ export interface LocalizedNote {
   body: string[];
   emphasis?: string[];
   cta?: string;
+  tagline?: string;
   returnLine?: string;
 }
 
@@ -49,6 +50,8 @@ export interface CampaignCopy {
 export interface StagePayload {
   stage: CampaignStageMeta;
   stages: CampaignStageMeta[];
+  slugs: string[];
+  seo: Record<Locale, { siteTitle: string; description: string }>;
   copy: CampaignCopy;
 }
 

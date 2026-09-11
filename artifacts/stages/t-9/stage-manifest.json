@@ -1,0 +1,33 @@
+{
+  "stageId": "t-9",
+  "unlockAt": "2026-09-22T00:00:00Z",
+  "sourceCommit": "a98313c518d89d82273e98171898bd6b03c14802",
+  "contentHash": "e43d29d2260d025ad1a325846b518ece674800497610f0e1b46d5b111051d9c6",
+  "routes": [
+    "/",
+    "/en/",
+    "/es/",
+    "/ru/",
+    "/discover/hello/",
+    "/en/discover/hello/",
+    "/es/discover/hello/",
+    "/ru/discover/hello/",
+    "/discover/events/",
+    "/en/discover/events/",
+    "/es/discover/events/",
+    "/ru/discover/events/",
+    "/discover/city/",
+    "/en/discover/city/",
+    "/es/discover/city/",
+    "/ru/discover/city/",
+    "/discover/together/",
+    "/en/discover/together/",
+    "/es/discover/together/",
+    "/ru/discover/together/",
+    "/discover/atmosphere/",
+    "/en/discover/atmosphere/",
+    "/es/discover/atmosphere/",
+    "/ru/discover/atmosphere/"
+  ],
+  "generatedAt": "2026-09-11T16:57:23.207Z"
+}

@@ -1,0 +1,11 @@
+[Unit]
+Description=Check hello-along campaign stage activation on UTC boundaries
+
+[Timer]
+OnCalendar=*-*-* 00:00:05 UTC
+OnBootSec=45s
+Persistent=true
+Unit=hello-along-stage.service
+
+[Install]
+WantedBy=timers.target

@@ -1,6 +1,8 @@
 node_modules/
 dist/
 screenshots/
+artifacts/screenshots/
+artifacts/stages/*/public/
 
 .env*
 !.env.example

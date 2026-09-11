@@ -4,10 +4,14 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build && node scripts/create-route-entrypoints.mjs",
+    "dev": "node scripts/write-stage-content.mjs t-0 && vite",
+    "build": "node scripts/write-stage-content.mjs t-21 && vite build && node scripts/create-route-entrypoints.mjs",
+    "build:stage": "node scripts/write-stage-content.mjs",
+    "build:stages": "node scripts/build-stages.mjs",
     "scan:leaks": "node scripts/stage-leakage-scan.mjs dist",
+    "scan:stage-leaks": "node scripts/stage-leakage-scan.mjs artifacts/stages",
     "preview": "vite preview --host 0.0.0.0",
+    "serve:static": "node scripts/static-stage-server.mjs",
     "lint": "eslint . --ext .js,.ts,.jsx,.tsx",
     "test": "vitest run"
   },
