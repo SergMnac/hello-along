@@ -272,3 +272,138 @@ Rollback proof was not executed. Scheduler service/timer was not installed or en
 PRODUCTION ACTIVE - SCHEDULER NOT ENABLED.
 
 NO rollback proof was performed yet. NO scheduler timer was enabled.
+
+## CORRECTION 1 - Owner Defects
+
+Status: READY FOR RESTRICTED OWNER CONFIRMATION
+
+Canonical inputs:
+
+- TASK: `AL-WEB-PL-DEP-001-CORRECTION-1-TASK.md`
+- TASK commit: `5280df05128f6ceed137fdbdc2dcb746a1bd908d`
+- PROMPT: `AL-WEB-PL-DEP-001-CORRECTION-1-PROMPT.md`
+- PROMPT commit: `310166249c9565c0e62f53d7cf5d6e617a3d2cee`
+
+Scope:
+
+- C1: move T-21 resting note left so it no longer intrudes into the canonical Along logo area on desktop/intermediate widths.
+- C2: restore click/tap/keyboard open and close behavior for the T-21 full reading state in EN, ES and RU.
+- Scheduler timer remained absent and disabled.
+- Rollback proof was not performed.
+
+Pre-correction production guard:
+
+- Active stage before correction: `t-21`
+- Active release before correction: `/opt/home-dc/edge/releases/hello-along/t-21/public`
+- Active release hash before correction: `1f656ade3901e3e3458b763f9bf3132094da1d4ec3fbbfdf782d9d8335a7a607c19`
+- `edge-hello-along`: running, healthy
+- Live baseline hash verified: `c00edd51169ae0a1e78d575391d42c7c85a277bcc2fe46baa66cbf99b47f3190`
+- Scheduler timer units: not installed
+
+Changed source files:
+
+- `src/styles.css`
+- `src/__tests__/campaign.test.tsx`
+
+Source changes:
+
+- `.note-card-1` desktop/intermediate position changed from `left: 20.8%` to `left: max(4.5%, calc(50% - 350px))`.
+- `.intro-panel` now has `pointer-events: none` so the transparent central composition cannot intercept note clicks/taps.
+- Added automated EN/ES/RU T-21 open/close tests for click, keyboard activation, Escape close and technical-stage-label absence.
+
+Corrected source:
+
+- Correction branch commit: `7f4f9c2` (`fix: restore t21 note interaction and spacing`)
+- Final remote main merge commit: `a068be82bdf443e279ce26b749922a9d135b18b3`
+
+Checks:
+
+- `npm ci`: passed; npm reported existing peer/audit warnings.
+- `npm test`: passed in source checkout; 3 files, 20 tests.
+- `npm run lint`: passed.
+- `npx tsc --noEmit`: passed.
+- `npm run build`: passed.
+- `npm run scan:leaks`: passed.
+- Exact final remote main LF checkout:
+  - `npm ci`: passed; npm reported existing peer/audit warnings.
+  - `npm test`: passed; 1 file, 10 tests.
+  - `npm run lint`: passed.
+  - `npx tsc --noEmit`: passed.
+  - `npm run build`: passed.
+  - `npm run build:stages`: passed.
+  - `npm run scan:leaks`: passed.
+  - `npm run scan:stage-leaks`: passed.
+  - `npm run test:scheduler`: passed.
+
+Responsive evidence:
+
+- Screenshot directory: `artifacts/release-preflight/dep-correction-1/`
+- Resting screenshots:
+  - `desktop-1440-resting-en.png`
+  - `owner-943-resting-en.png`
+  - `tablet-768-resting-en.png`
+  - `mobile-390-resting-en.png`
+- Open reading screenshots:
+  - `open-en.png`
+  - `open-es.png`
+  - `open-ru.png`
+- Geometry evidence:
+  - `visual-geometry.json`
+  - 1440 horizontal note/logo gap: `34px`
+  - 943 horizontal note/logo gap: `34px`
+  - 768 horizontal note/logo gap: `31.2px`
+
+Corrected release:
+
+- Local corrected package root: `artifacts/release-preflight/dep-correction-1/release-a068be82bdf4`
+- Server upload temp: `/tmp/hello-along-dep-correction-a068be82bdf4`
+- Server package SHA-256 verification: all eight corrected packages OK before extraction.
+- Corrected immutable release root: `/opt/home-dc/edge/releases/hello-along-a068be82bdf4`
+- Scheduler `verify` with `EXPECTED_SOURCE_COMMIT=a068be82bdf443e279ce26b749922a9d135b18b3`: `All hello-along releases verified`
+- Corrected active release path: `/opt/home-dc/edge/releases/hello-along-a068be82bdf4/t-21/public`
+- Corrected active release hash: `7ddd9be6ec1a88aca64746b0b9a6e17345c9db3fbbfdf782d9d8335a7a607c19`
+
+Activation:
+
+- Scheduler-selected stage: `t-21`
+- Before target: `/opt/home-dc/edge/releases/hello-along/t-21/public`
+- After target: `/opt/home-dc/edge/releases/hello-along-a068be82bdf4/t-21/public`
+- Recreated service: `edge-hello-along` only.
+- Container health after activation: `running healthy`
+
+Public route checks after correction:
+
+| route | HTTPS status |
+| --- | --- |
+| `/` | 200 |
+| `/en/` | 200 |
+| `/es/` | 200 |
+| `/ru/` | 200 |
+| `/discover/hello/` | 200 |
+| `/en/discover/hello/` | 200 |
+| `/es/discover/hello/` | 200 |
+| `/ru/discover/hello/` | 200 |
+| `/discover/events/` | 404 |
+| `/en/discover/events/` | 404 |
+| `/es/discover/events/` | 404 |
+| `/ru/discover/events/` | 404 |
+
+Asset checks:
+
+- `https://hello-along.com/logo/along-logo-dark.svg`: 200
+- `https://hello-along.com/assets/background-image@2x.webp`: 200
+
+Correction results:
+
+- C1: corrected in production; desktop/intermediate note position no longer overlaps the logo area per screenshots and geometry evidence.
+- C2: corrected in source and verified by automated EN/ES/RU open-close tests; open-state visual evidence captured for EN/ES/RU.
+- Technical `T-21`/date labels were not reintroduced by the source changes.
+
+Scheduler timer state:
+
+- `hello-along-stage.service`: not installed.
+- `hello-along-stage.timer`: not installed.
+- Timer enabled: no.
+- Next trigger: none.
+
+Stopped at restricted Owner confirmation gate. No rollback proof was performed.
