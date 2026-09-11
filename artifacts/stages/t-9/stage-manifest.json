@@ -1,7 +1,7 @@
 {
   "stageId": "t-9",
   "unlockAt": "2026-09-22T00:00:00Z",
-  "sourceCommit": "a98313c518d89d82273e98171898bd6b03c14802",
+  "sourceCommit": "12e13c6503fe07dde1f02487894528fca7a51f85",
   "contentHash": "e43d29d2260d025ad1a325846b518ece674800497610f0e1b46d5b111051d9c6",
   "routes": [
     "/",
@@ -29,5 +29,5 @@
     "/es/discover/atmosphere/",
     "/ru/discover/atmosphere/"
   ],
-  "generatedAt": "2026-09-11T16:57:23.207Z"
+  "generatedAt": "2026-09-11T18:02:13.330Z"
 }

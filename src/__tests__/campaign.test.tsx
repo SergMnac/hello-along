@@ -79,8 +79,11 @@ describe('note interaction', () => {
   it('opens with keyboard and closes with Escape and outside click', () => {
     render(<UnderConstructionPage locale="en" />);
     const trigger = screen.getByRole('button', { name: /Hello, Along/i });
+    expect(screen.queryByText(/^T-\d+/)).toBeNull();
+    expect(screen.getByText('21 days.')).toBeTruthy();
     fireEvent.keyDown(trigger, { key: 'Enter' });
     expect(screen.getByRole('dialog')).toBeTruthy();
+    expect(screen.queryByText(/^T-\d+/)).toBeNull();
     expect(screen.getByText("We're creating Along not so you spend more time on your phone.")).toBeTruthy();
     fireEvent.keyDown(window, { key: 'Escape' });
     expect(screen.queryByRole('dialog')).toBeNull();

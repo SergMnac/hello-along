@@ -140,10 +140,6 @@ const UnderConstructionPage = ({ locale, revealSlug, notFound = false, pathname 
         ))}
       </nav>
 
-      <div className="countdown-badge" aria-label={`${CAMPAIGN_PAYLOAD.stage.label} ${CAMPAIGN_PAYLOAD.stage.shortDate}`}>
-        {CAMPAIGN_PAYLOAD.stage.label} · {CAMPAIGN_PAYLOAD.stage.shortDate}
-      </div>
-
       <section className="intro-panel">
         <img src="/logo/along-logo-dark.svg" alt="Along" className="brand-logo" />
         <h1>{isLaunch && launch ? launch.title : base.atmospheric}</h1>
@@ -152,7 +148,6 @@ const UnderConstructionPage = ({ locale, revealSlug, notFound = false, pathname 
 
       {notFound || (revealSlug && requestedRevealIndex >= notes.length) ? (
         <section className="status-panel" aria-live="polite">
-          <p className="status-eyebrow">{CAMPAIGN_PAYLOAD.stage.label}</p>
           <h2>{base.notFoundTitle}</h2>
           <p>{base.notFoundBody}</p>
         </section>
@@ -198,7 +193,6 @@ const UnderConstructionPage = ({ locale, revealSlug, notFound = false, pathname 
             <button ref={closeRef} type="button" className="modal-close" onClick={closeModal} aria-label={base.closeLabel}>
               x
             </button>
-            <p className="modal-eyebrow">{CAMPAIGN_PAYLOAD.stage.label}</p>
             <h2 id="note-modal-title">{activeNote.title}</h2>
             {activeNote.body.map((line) => (
               <p key={line} className={activeNote.emphasis?.includes(line) ? 'emphasis-line' : undefined}>{line}</p>

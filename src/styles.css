@@ -95,21 +95,6 @@ a, button { font: inherit; }
   color: var(--quiet);
 }
 
-.countdown-badge {
-  position: fixed;
-  top: 16px;
-  left: 16px;
-  z-index: 5;
-  padding: 6px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 999px;
-  background: rgba(3, 7, 15, 0.34);
-  color: rgba(255, 255, 255, 0.82);
-  font: 600 11px/1 'Geist', system-ui, sans-serif;
-  letter-spacing: 0.04em;
-  backdrop-filter: blur(12px);
-}
-
 .intro-panel {
   position: relative;
   z-index: 2;
@@ -230,14 +215,6 @@ h1, h2, p { margin: 0; }
   text-align: center;
 }
 
-.status-eyebrow,
-.modal-eyebrow {
-  color: var(--paper-soft);
-  font: 700 11px/1 'Inter', 'Geist', system-ui, sans-serif;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
 .launch-panel {
   display: grid;
   justify-items: center;
@@ -355,11 +332,6 @@ h1, h2, p { margin: 0; }
     left: 50%;
     right: auto;
     transform: translateX(-50%);
-  }
-
-  .countdown-badge {
-    top: 12px;
-    left: 12px;
   }
 
   .intro-panel {

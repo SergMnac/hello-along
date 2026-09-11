@@ -1,7 +1,7 @@
 {
   "stageId": "t-15",
   "unlockAt": "2026-09-16T00:00:00Z",
-  "sourceCommit": "a98313c518d89d82273e98171898bd6b03c14802",
+  "sourceCommit": "12e13c6503fe07dde1f02487894528fca7a51f85",
   "contentHash": "393be71486c354f3b9a28b47402ecbbd76a8b44241bf84022ef29d2350cf0efe",
   "routes": [
     "/",
@@ -21,5 +21,5 @@
     "/es/discover/city/",
     "/ru/discover/city/"
   ],
-  "generatedAt": "2026-09-11T16:57:19.145Z"
+  "generatedAt": "2026-09-11T18:02:09.372Z"
 }

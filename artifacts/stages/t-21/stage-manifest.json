@@ -1,7 +1,7 @@
 {
   "stageId": "t-21",
   "unlockAt": "2026-09-10T00:00:00Z",
-  "sourceCommit": "a98313c518d89d82273e98171898bd6b03c14802",
+  "sourceCommit": "12e13c6503fe07dde1f02487894528fca7a51f85",
   "contentHash": "5f2de95b4773b9943a0397b1f71829406a62f867b6a9a99d76adf831366a9038",
   "routes": [
     "/",
@@ -13,5 +13,5 @@
     "/es/discover/hello/",
     "/ru/discover/hello/"
   ],
-  "generatedAt": "2026-09-11T16:57:14.952Z"
+  "generatedAt": "2026-09-11T18:02:05.467Z"
 }
