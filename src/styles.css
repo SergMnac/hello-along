@@ -104,6 +104,7 @@ a, button { font: inherit; }
   gap: 28px;
   text-align: center;
   transform: translateY(8px);
+  pointer-events: none;
 }
 
 .brand-logo {
@@ -194,7 +195,7 @@ h1, h2, p { margin: 0; }
   text-transform: lowercase;
 }
 
-.note-card-1 { left: 20.8%; top: 41%; transform: rotate(-4deg); }
+.note-card-1 { left: max(4.5%, calc(50% - 350px)); top: 41%; transform: rotate(-4deg); }
 .note-card-2 { right: 16.6%; top: 36.5%; transform: rotate(3.5deg); }
 .note-card-3 { left: 23.6%; top: 63%; transform: rotate(5deg); }
 .note-card-4 { right: 13.6%; top: 61%; transform: rotate(-3deg); }
