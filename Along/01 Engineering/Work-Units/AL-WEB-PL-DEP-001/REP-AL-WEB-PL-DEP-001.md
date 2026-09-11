@@ -524,3 +524,108 @@ Scheduler timer state after mobile correction:
 - Next trigger: none.
 
 Stopped at restricted Owner mobile confirmation gate. No rollback proof was performed.
+
+## DEP-001 finalization after Owner visual confirmation
+
+Status: `DEPLOYMENT COMPLETE — ARCHITECT CLOSURE READY`
+
+Owner visual confirmation:
+
+- Desktop: PASS.
+- Responsive desktop: PASS.
+- Real mobile: PASS.
+- Note/logo separation: PASS.
+- Mobile tap -> open -> close: PASS.
+- EN / ES / RU: PASS.
+
+Approved production source:
+
+- `main@d9b45bb19537f4157431c45d981f297b47993ecb`
+
+Authoritative baseline integrity:
+
+- Path: `/opt/home-dc/edge/releases/hello-along/baseline/public.sha256`
+- Expected SHA-256: `c00edd51169ae0a1e78d575391d42c7c85a277bcc2fe46baa66cbf99b47f3190`
+- Actual SHA-256: `c00edd51169ae0a1e78d575391d42c7c85a277bcc2fe46baa66cbf99b47f3190`
+- Baseline `sha256sum -c public.sha256`: passed.
+
+Rollback proof:
+
+- Before rollback target: `/opt/home-dc/edge/releases/hello-along-d9b45bb19537/t-21/public`
+- Command path: `/opt/home-dc/edge/bin/along-stage-scheduler.sh rollback baseline`
+- Rollback `RELEASES_ROOT`: `/opt/home-dc/edge/releases/hello-along`
+- After rollback target: `/opt/home-dc/edge/releases/hello-along/baseline/public`
+- Rollback result: `Rolled back hello-along to baseline`
+- `edge-hello-along` after rollback: `healthy`
+- Baseline public availability after rollback:
+  - `/`: 200
+  - `/en/`: 200
+  - `/es/`: 200
+  - `/ru/`: 200
+
+Restoration to campaign stage:
+
+- Scheduler-selected stage: `t-21`
+- Restoration `RELEASES_ROOT`: `/opt/home-dc/edge/releases/hello-along-d9b45bb19537`
+- Restoration `EXPECTED_SOURCE_COMMIT`: `d9b45bb19537f4157431c45d981f297b47993ecb`
+- After restoration target: `/opt/home-dc/edge/releases/hello-along-d9b45bb19537/t-21/public`
+- Active release hash: `6f39fdf5696365e2c68bba50b13dc903da0acee00cf06c8e59e320095cca56f2`
+- `t-21/stage-manifest.json` confirmed:
+  - `stageId`: `t-21`
+  - `sourceCommit`: `d9b45bb19537f4157431c45d981f297b47993ecb`
+- `edge-hello-along` after restoration: `healthy`
+
+Public route checks after restoration:
+
+| route | HTTPS status |
+| --- | --- |
+| `/` | 200 |
+| `/en/` | 200 |
+| `/es/` | 200 |
+| `/ru/` | 200 |
+| `/discover/hello/` | 200 |
+| `/en/discover/hello/` | 200 |
+| `/es/discover/hello/` | 200 |
+| `/ru/discover/hello/` | 200 |
+| `/discover/events/` | 404 |
+| `/en/discover/events/` | 404 |
+| `/es/discover/events/` | 404 |
+| `/ru/discover/events/` | 404 |
+
+Scheduler service/timer installation:
+
+- Installed unit: `/etc/systemd/system/hello-along-stage.service`
+- Installed timer: `/etc/systemd/system/hello-along-stage.timer`
+- `systemd-analyze verify`: passed for both units.
+- Service environment pins the corrected release family:
+  - `RELEASES_ROOT=/opt/home-dc/edge/releases/hello-along-d9b45bb19537`
+  - `EXPECTED_SOURCE_COMMIT=d9b45bb19537f4157431c45d981f297b47993ecb`
+- Service does not reference previous release families `f3c2cc...` or `a068be...`.
+
+Idempotent scheduler proof:
+
+- Manual `systemctl start hello-along-stage.service`: completed with `Result=success`, `ExecMainStatus=0`.
+- Before run target: `/opt/home-dc/edge/releases/hello-along-d9b45bb19537/t-21/public`
+- After run target: `/opt/home-dc/edge/releases/hello-along-d9b45bb19537/t-21/public`
+- Before run hash: `6f39fdf5696365e2c68bba50b13dc903da0acee00cf06c8e59e320095cca56f2`
+- After run hash: `6f39fdf5696365e2c68bba50b13dc903da0acee00cf06c8e59e320095cca56f2`
+- Before/after symlink mtime: unchanged.
+- Result: idempotent; current corrected active release was not damaged or changed.
+
+Timer state:
+
+- `hello-along-stage.service`: installed, static, inactive between runs.
+- `hello-along-stage.timer`: installed, enabled, active.
+- Timer trigger schedule: `OnCalendar=*-*-* 00:00:05 UTC`, `OnBootSec=45s`, `Persistent=true`.
+- Immediate timer activation run: completed successfully and left target unchanged.
+- Next trigger: `Sat 2026-09-12 00:00:05 UTC`
+- Last trigger observed: `Fri 2026-09-11 21:32:47 UTC`
+
+Final production state:
+
+- Active stage: `t-21`
+- Active release path: `/opt/home-dc/edge/releases/hello-along-d9b45bb19537/t-21/public`
+- Active release hash: `6f39fdf5696365e2c68bba50b13dc903da0acee00cf06c8e59e320095cca56f2`
+- `edge-hello-along`: `healthy`
+
+No self-acceptance was performed.
