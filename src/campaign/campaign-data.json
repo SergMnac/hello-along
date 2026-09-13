@@ -59,8 +59,7 @@
         "accent": "\"Coffee after work?\"",
         "tapLabel": "tap to read →",
         "body": ["Someone is going for a run.", "Someone is looking for company for a concert.", "Someone simply wrote:", "\"Coffee after work?\"", "Maybe someone has already imagined your evening today.", "Along helps you notice it."],
-        "emphasis": ["\"Coffee after work?\"", "Along helps you notice it."],
-        "cta": "See what's happening nearby →"
+        "emphasis": ["\"Coffee after work?\"", "Along helps you notice it."]
       },
       {
         "title": "The city is already alive.",
@@ -121,8 +120,7 @@
         "accent": "«¿Un café después del trabajo?»",
         "tapLabel": "toca para leer →",
         "body": ["Alguien va a salir a correr.", "Alguien busca compañía para ir a un concierto.", "Alguien simplemente escribió:", "«¿Un café después del trabajo?»", "Quizá alguien ya imaginó cómo podría ser tu tarde de hoy.", "Along te ayuda a descubrirlo."],
-        "emphasis": ["«¿Un café después del trabajo?»", "Along te ayuda a descubrirlo."],
-        "cta": "Ver qué está pasando cerca →"
+        "emphasis": ["«¿Un café después del trabajo?»", "Along te ayuda a descubrirlo."]
       },
       {
         "title": "La ciudad ya está viva.",
@@ -183,8 +181,7 @@
         "accent": "«Кофе после работы?»",
         "tapLabel": "нажми →",
         "body": ["Кто-то собирается на пробежку.", "Кто-то ищет компанию на концерт.", "Кто-то просто написал:", "«Кофе после работы?»", "Возможно, твой сегодняшний вечер уже кто-то придумал.", "Along помогает это заметить."],
-        "emphasis": ["«Кофе после работы?»", "Along помогает это заметить."],
-        "cta": "Посмотреть, что происходит рядом →"
+        "emphasis": ["«Кофе после работы?»", "Along помогает это заметить."]
       },
       {
         "title": "Город уже живёт.",

@@ -9,6 +9,11 @@ import { CAMPAIGN_STAGES, getUnlockedStage } from '../campaign/schedule';
 import campaignData from '../campaign/campaign-data.json';
 
 const locales = ['en', 'es', 'ru'] as const;
+const removedNote02Ctas = [
+  "See what's happening nearby →",
+  'Ver qué está pasando cerca →',
+  'Посмотреть, что происходит рядом →',
+];
 
 describe('campaign schedule', () => {
   it('selects stages one second before, at, and after every UTC boundary', () => {
@@ -37,6 +42,19 @@ describe('campaign content model', () => {
       expect(campaignData.notes[locale][6].cta).toBeUndefined();
       expect(campaignData.launch[locale].primaryCta).toBeTruthy();
       expect(campaignData.launch[locale].secondaryCta).toBeTruthy();
+    });
+  });
+
+  it('removes the premature Note 02 CTA without changing later note CTAs', () => {
+    locales.forEach((locale) => {
+      expect(campaignData.notes[locale][1].cta).toBeUndefined();
+      expect(campaignData.notes[locale][2].cta).toBeTruthy();
+      expect(campaignData.notes[locale][3].cta).toBeTruthy();
+      expect(campaignData.notes[locale][4].cta).toBeTruthy();
+      expect(campaignData.notes[locale][5].cta).toBeTruthy();
+    });
+    removedNote02Ctas.forEach((cta) => {
+      expect(JSON.stringify(campaignData.notes)).not.toContain(cta);
     });
   });
 
@@ -95,6 +113,30 @@ describe('note interaction', () => {
       expect(screen.queryByRole('dialog')).toBeNull();
       unmount();
     });
+  });
+
+  it('opens and closes Note 02 for every locale without the removed CTA', () => {
+    const originalNotes = { ...CAMPAIGN_PAYLOAD.copy.notes };
+
+    try {
+      locales.forEach((locale) => {
+        CAMPAIGN_PAYLOAD.copy.notes[locale] = campaignData.notes[locale].slice(0, 2);
+        const note = campaignData.notes[locale][1];
+        const { unmount } = render(<UnderConstructionPage locale={locale} />);
+        const trigger = screen.getByRole('button', { name: new RegExp(note.title, 'i') });
+
+        fireEvent.click(trigger);
+        expect(screen.getByRole('dialog')).toBeTruthy();
+        expect(screen.getByText(note.body[0])).toBeTruthy();
+        expect(screen.queryByRole('link', { name: removedNote02Ctas[locales.indexOf(locale)] })).toBeNull();
+        removedNote02Ctas.forEach((cta) => expect(screen.queryByText(cta)).toBeNull());
+        fireEvent.click(screen.getByRole('button', { name: campaignData.base[locale].closeLabel }));
+        expect(screen.queryByRole('dialog')).toBeNull();
+        unmount();
+      });
+    } finally {
+      CAMPAIGN_PAYLOAD.copy.notes = originalNotes;
+    }
   });
 
   it('opens with keyboard and closes with Escape and outside click', () => {
