@@ -67,7 +67,6 @@
         "tapLabel": "tap to read →",
         "body": ["A city is more than streets, buildings and places.", "It is people who, right now, are going somewhere, making plans and ready to say:", "\"Come with me?\"", "Along helps you see the life of the city around you."],
         "emphasis": ["\"Come with me?\"", "City Is The Main Character."],
-        "cta": "Feel the city →",
         "tagline": "City Is The Main Character."
       },
       {
@@ -76,7 +75,6 @@
         "tapLabel": "tap to read →",
         "body": ["Sometimes someone nearby wants exactly what you do.", "Take a walk.", "Listen to music.", "Go for a ride.", "Have coffee.", "Or simply not spend the evening at home.", "Along helps you notice each other."],
         "emphasis": ["Along helps you notice each other.", "AI Helps Humans Meet Humans."],
-        "cta": "See who's nearby →",
         "tagline": "AI Helps Humans Meet Humans."
       },
       {
@@ -84,8 +82,7 @@
         "accent": "Feel the atmosphere.",
         "tapLabel": "tap to read →",
         "body": ["Sometimes you want a lively evening.", "Sometimes—a small coffee shop.", "Sometimes—a long walk.", "And sometimes—a place only locals know.", "Along looks for more than places.", "Along helps you feel the atmosphere."],
-        "emphasis": ["Along helps you feel the atmosphere."],
-        "cta": "Feel the city differently →"
+        "emphasis": ["Along helps you feel the atmosphere."]
       },
       {
         "title": "The evening ended. The moment stayed.",
@@ -93,7 +90,6 @@
         "tapLabel": "tap to read →",
         "body": ["You simply decided to meet.", "Then you went somewhere.", "You talked. You laughed. Maybe you met someone new.", "An ordinary evening became a story."],
         "emphasis": ["Moments become Memory."],
-        "cta": "Keep what you want to remember →",
         "tagline": "Moments become Memory."
       },
       {
@@ -128,7 +124,6 @@
         "tapLabel": "toca para leer →",
         "body": ["Una ciudad no es solo calles, edificios y lugares.", "Son personas que, ahora mismo, van a algún sitio, hacen planes y están dispuestas a decir:", "«¿Vienes conmigo?»", "Along te ayuda a ver la vida de la ciudad a tu alrededor."],
         "emphasis": ["«¿Vienes conmigo?»", "City Is The Main Character."],
-        "cta": "Sentir la ciudad →",
         "tagline": "City Is The Main Character."
       },
       {
@@ -137,7 +132,6 @@
         "tapLabel": "toca para leer →",
         "body": ["A veces alguien cerca quiere exactamente lo mismo que tú.", "Dar un paseo.", "Escuchar música.", "Salir a dar una vuelta.", "Tomar un café.", "O simplemente no pasar la tarde en casa.", "Along les ayuda a encontrarse."],
         "emphasis": ["Along les ayuda a encontrarse.", "AI Helps Humans Meet Humans."],
-        "cta": "Ver quién está cerca →",
         "tagline": "AI Helps Humans Meet Humans."
       },
       {
@@ -145,8 +139,7 @@
         "accent": "Sentir la atmósfera.",
         "tapLabel": "toca para leer →",
         "body": ["A veces apetece una tarde animada.", "A veces, una pequeña cafetería.", "A veces, un paseo largo.", "Y a veces, un lugar que solo conocen quienes viven allí.", "Along no busca simplemente lugares.", "Along te ayuda a sentir la atmósfera."],
-        "emphasis": ["Along te ayuda a sentir la atmósfera."],
-        "cta": "Sentir la ciudad de otra manera →"
+        "emphasis": ["Along te ayuda a sentir la atmósfera."]
       },
       {
         "title": "La tarde terminó. El momento permaneció.",
@@ -154,7 +147,6 @@
         "tapLabel": "toca para leer →",
         "body": ["Simplemente decidieron encontrarse.", "Después fueron a algún sitio.", "Hablaron. Se rieron. Quizá conocieron a alguien nuevo.", "Una tarde cualquiera se convirtió en una historia."],
         "emphasis": ["Moments become Memory."],
-        "cta": "Guardar lo que quieres recordar →",
         "tagline": "Moments become Memory."
       },
       {
@@ -189,7 +181,6 @@
         "tapLabel": "нажми →",
         "body": ["Город — это не только улицы, здания и места.", "Это люди, которые прямо сейчас куда-то идут, что-то придумывают и готовы сказать:", "«Пойдём со мной?»", "Along помогает увидеть жизнь города вокруг тебя."],
         "emphasis": ["«Пойдём со мной?»", "City Is The Main Character."],
-        "cta": "Почувствовать город →",
         "tagline": "City Is The Main Character."
       },
       {
@@ -198,7 +189,6 @@
         "tapLabel": "нажми →",
         "body": ["Иногда человеку рядом хочется ровно того же, чего и тебе.", "Пройтись.", "Послушать музыку.", "Покататься.", "Выпить кофе.", "Или просто не провести вечер дома.", "Along помогает вам заметить друг друга."],
         "emphasis": ["Along помогает вам заметить друг друга.", "AI Helps Humans Meet Humans."],
-        "cta": "Увидеть, кто рядом →",
         "tagline": "AI Helps Humans Meet Humans."
       },
       {
@@ -206,8 +196,7 @@
         "accent": "Почувствовать атмосферу.",
         "tapLabel": "нажми →",
         "body": ["Иногда хочется шумного вечера.", "Иногда — маленькой кофейни.", "Иногда — долгой прогулки.", "А иногда — места, о котором знают только местные.", "Along ищет не просто места.", "Along помогает почувствовать атмосферу."],
-        "emphasis": ["Along помогает почувствовать атмосферу."],
-        "cta": "Почувствовать город иначе →"
+        "emphasis": ["Along помогает почувствовать атмосферу."]
       },
       {
         "title": "Вечер закончился. Момент остался.",
@@ -215,7 +204,6 @@
         "tapLabel": "нажми →",
         "body": ["Вы просто решили встретиться.", "Потом куда-то пошли.", "Разговаривали. Смеялись. Возможно, познакомились с кем-то новым.", "Обычный вечер стал историей."],
         "emphasis": ["Moments become Memory."],
-        "cta": "Сохранить то, что хочется помнить →",
         "tagline": "Moments become Memory."
       },
       {

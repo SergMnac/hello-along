@@ -14,6 +14,21 @@ const removedNote02Ctas = [
   'Ver qué está pasando cerca →',
   'Посмотреть, что происходит рядом →',
 ];
+const removedFalseCtas = [
+  'Feel the city →',
+  'Sentir la ciudad →',
+  'Почувствовать город →',
+  "See who's nearby →",
+  'Ver quién está cerca →',
+  'Увидеть, кто рядом →',
+  'Feel the city differently →',
+  'Sentir la ciudad de otra manera →',
+  'Почувствовать город иначе →',
+  'Keep what you want to remember →',
+  'Guardar lo que quieres recordar →',
+  'Сохранить то, что хочется помнить →',
+];
+const note07Countdowns = ['3 days.', '3 días.', '3 дня.'];
 
 describe('campaign schedule', () => {
   it('selects stages one second before, at, and after every UTC boundary', () => {
@@ -39,21 +54,21 @@ describe('campaign content model', () => {
 
   it('keeps T-3 CTA-free and T-0 launch CTA-complete', () => {
     locales.forEach((locale) => {
-      expect(campaignData.notes[locale][6].cta).toBeUndefined();
+      expect('cta' in campaignData.notes[locale][6]).toBe(false);
       expect(campaignData.launch[locale].primaryCta).toBeTruthy();
       expect(campaignData.launch[locale].secondaryCta).toBeTruthy();
     });
   });
 
-  it('removes the premature Note 02 CTA without changing later note CTAs', () => {
+  it('keeps Notes 02–07 free of false CTAs while preserving Note 07 countdown and resting hints', () => {
     locales.forEach((locale) => {
-      expect(campaignData.notes[locale][1].cta).toBeUndefined();
-      expect(campaignData.notes[locale][2].cta).toBeTruthy();
-      expect(campaignData.notes[locale][3].cta).toBeTruthy();
-      expect(campaignData.notes[locale][4].cta).toBeTruthy();
-      expect(campaignData.notes[locale][5].cta).toBeTruthy();
+      expect('cta' in campaignData.notes[locale][1]).toBe(false);
+      campaignData.notes[locale].slice(2, 6).forEach((note) => expect('cta' in note).toBe(false));
+      campaignData.notes[locale].forEach((note) => expect(note.tapLabel).toBeTruthy());
+      expect(campaignData.notes[locale][6].returnLine).toBe(note07Countdowns[locales.indexOf(locale)]);
+      expect(campaignData.notes[locale][6].emphasis).toContain(note07Countdowns[locales.indexOf(locale)]);
     });
-    removedNote02Ctas.forEach((cta) => {
+    [...removedNote02Ctas, ...removedFalseCtas].forEach((cta) => {
       expect(JSON.stringify(campaignData.notes)).not.toContain(cta);
     });
   });
@@ -133,6 +148,33 @@ describe('note interaction', () => {
         fireEvent.click(screen.getByRole('button', { name: campaignData.base[locale].closeLabel }));
         expect(screen.queryByRole('dialog')).toBeNull();
         unmount();
+      });
+    } finally {
+      CAMPAIGN_PAYLOAD.copy.notes = originalNotes;
+    }
+  });
+
+  it('opens and closes Notes 03–07 for every locale without false CTAs', () => {
+    const originalNotes = { ...CAMPAIGN_PAYLOAD.copy.notes };
+
+    try {
+      locales.forEach((locale) => {
+        CAMPAIGN_PAYLOAD.copy.notes[locale] = campaignData.notes[locale];
+
+        campaignData.notes[locale].slice(2).forEach((note) => {
+          const { unmount } = render(<UnderConstructionPage locale={locale} />);
+          const trigger = screen.getByText(note.title, { selector: '.note-title' }).closest('button');
+
+          expect(trigger).not.toBeNull();
+          expect(trigger).toHaveTextContent(note.tapLabel);
+          fireEvent.click(trigger as HTMLButtonElement);
+          expect(screen.getByRole('dialog')).toBeTruthy();
+          expect(screen.getByText(note.body[0])).toBeTruthy();
+          removedFalseCtas.forEach((cta) => expect(screen.queryByText(cta)).toBeNull());
+          fireEvent.click(screen.getByRole('button', { name: campaignData.base[locale].closeLabel }));
+          expect(screen.queryByRole('dialog')).toBeNull();
+          unmount();
+        });
       });
     } finally {
       CAMPAIGN_PAYLOAD.copy.notes = originalNotes;
