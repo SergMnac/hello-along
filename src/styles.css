@@ -203,8 +203,7 @@ h1, h2, p { margin: 0; }
 .note-card-6 { right: 12.4%; top: 25.5%; transform: rotate(-5deg); }
 .note-card-7 { left: 39%; top: 76%; transform: rotate(2.5deg); }
 
-.status-panel,
-.launch-panel {
+.status-panel {
   position: relative;
   z-index: 3;
   width: min(360px, 86vw);
@@ -216,18 +215,6 @@ h1, h2, p { margin: 0; }
   text-align: center;
 }
 
-.launch-panel {
-  display: grid;
-  justify-items: center;
-  gap: 14px;
-}
-
-.launch-panel p {
-  color: var(--paper-soft);
-}
-
-.launch-panel a,
-.launch-panel button,
 .modal-cta {
   border: 1px solid rgba(36, 29, 22, 0.24);
   background: rgba(36, 29, 22, 0.08);

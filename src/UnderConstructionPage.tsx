@@ -153,18 +153,6 @@ const UnderConstructionPage = ({ locale, revealSlug, notFound = false, pathname 
         </section>
       ) : null}
 
-      {isLaunch && launch ? (
-        <section className="launch-panel" aria-label={launch.kicker}>
-          <p>{launch.kicker}</p>
-          <a href="mailto:hello@hello-along.com" onClick={() => emitAnalytics('launch_primary_cta', { locale })}>
-            {launch.primaryCta}
-          </a>
-          <button type="button" onClick={() => emitAnalytics('launch_secondary_cta', { locale })}>
-            {launch.secondaryCta}
-          </button>
-        </section>
-      ) : null}
-
       <section className="campaign-wall" aria-label={base.noteListLabel}>
         {notes.map((note, index) => (
           <button

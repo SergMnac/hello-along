@@ -52,7 +52,7 @@ describe('campaign content model', () => {
     locales.forEach((locale) => expect(campaignData.notes[locale]).toHaveLength(7));
   });
 
-  it('keeps T-3 CTA-free and T-0 launch CTA-complete', () => {
+  it('keeps T-3 CTA-free and the localized T-0 intro copy complete', () => {
     locales.forEach((locale) => {
       expect('cta' in campaignData.notes[locale][6]).toBe(false);
       expect(campaignData.launch[locale].primaryCta).toBeTruthy();
@@ -109,6 +109,36 @@ describe('campaign routing', () => {
 });
 
 describe('note interaction', () => {
+  it('renders the T-0 greeting, subtitle and seven notes without the launch panel in every locale', () => {
+    const originalStageId = CAMPAIGN_PAYLOAD.stage.id;
+    const originalLaunch = CAMPAIGN_PAYLOAD.copy.launch;
+    const originalNotes = { ...CAMPAIGN_PAYLOAD.copy.notes };
+
+    try {
+      CAMPAIGN_PAYLOAD.stage.id = 't-0';
+      CAMPAIGN_PAYLOAD.copy.launch = campaignData.launch;
+
+      locales.forEach((locale) => {
+        CAMPAIGN_PAYLOAD.copy.notes[locale] = campaignData.notes[locale];
+        const launch = campaignData.launch[locale];
+        const { unmount } = render(<UnderConstructionPage locale={locale} />);
+
+        expect(screen.getByAltText('Along')).toHaveAttribute('src', '/logo/along-logo-dark.svg');
+        expect(screen.getByRole('heading', { level: 1, name: launch.title })).toBeTruthy();
+        expect(screen.getByText(launch.body)).toBeTruthy();
+        expect(screen.getAllByRole('button', { name: /./ })).toHaveLength(7);
+        expect(document.querySelector('.launch-panel')).toBeNull();
+        expect(screen.queryByText(launch.primaryCta)).toBeNull();
+        expect(screen.queryByText(launch.secondaryCta)).toBeNull();
+        unmount();
+      });
+    } finally {
+      CAMPAIGN_PAYLOAD.stage.id = originalStageId;
+      CAMPAIGN_PAYLOAD.copy.launch = originalLaunch;
+      CAMPAIGN_PAYLOAD.copy.notes = originalNotes;
+    }
+  });
+
   it('opens and closes the T-21 full reading state for every locale', () => {
     locales.forEach((locale) => {
       const { unmount } = render(<UnderConstructionPage locale={locale} />);
