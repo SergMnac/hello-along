@@ -1,0 +1,332 @@
+[
+  {
+    "viewport": "desktop-1440",
+    "locale": "en",
+    "ready": true,
+    "resting": {
+      "title": "Hello, city.",
+      "subtitle": "See what's happening around you right now.",
+      "logoPresent": true,
+      "noteCount": 7,
+      "launchPanelAbsent": true,
+      "removedTextAbsent": true,
+      "h1Count": 1,
+      "dialogCount": 0,
+      "canonical": "https://hello-along.com/en/",
+      "hreflangCount": 4,
+      "htmlLang": "en"
+    },
+    "notes": [
+      {
+        "note": 1,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 2,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 3,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 4,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 5,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 6,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 7,
+        "dialogOpen": true,
+        "closed": true
+      }
+    ]
+  },
+  {
+    "viewport": "desktop-1440",
+    "locale": "es",
+    "ready": true,
+    "resting": {
+      "title": "Hola, ciudad.",
+      "subtitle": "Descubre qué está pasando a tu alrededor ahora mismo.",
+      "logoPresent": true,
+      "noteCount": 7,
+      "launchPanelAbsent": true,
+      "removedTextAbsent": true,
+      "h1Count": 1,
+      "dialogCount": 0,
+      "canonical": "https://hello-along.com/es/",
+      "hreflangCount": 4,
+      "htmlLang": "es"
+    },
+    "notes": [
+      {
+        "note": 1,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 2,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 3,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 4,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 5,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 6,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 7,
+        "dialogOpen": true,
+        "closed": true
+      }
+    ]
+  },
+  {
+    "viewport": "desktop-1440",
+    "locale": "ru",
+    "ready": true,
+    "resting": {
+      "title": "Привет, город.",
+      "subtitle": "Посмотри, что происходит рядом прямо сейчас.",
+      "logoPresent": true,
+      "noteCount": 7,
+      "launchPanelAbsent": true,
+      "removedTextAbsent": true,
+      "h1Count": 1,
+      "dialogCount": 0,
+      "canonical": "https://hello-along.com/ru/",
+      "hreflangCount": 4,
+      "htmlLang": "ru"
+    },
+    "notes": [
+      {
+        "note": 1,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 2,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 3,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 4,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 5,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 6,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 7,
+        "dialogOpen": true,
+        "closed": true
+      }
+    ]
+  },
+  {
+    "viewport": "mobile-390",
+    "locale": "en",
+    "ready": true,
+    "resting": {
+      "title": "Hello, city.",
+      "subtitle": "See what's happening around you right now.",
+      "logoPresent": true,
+      "noteCount": 7,
+      "launchPanelAbsent": true,
+      "removedTextAbsent": true,
+      "h1Count": 1,
+      "dialogCount": 0,
+      "canonical": "https://hello-along.com/en/",
+      "hreflangCount": 4,
+      "htmlLang": "en"
+    },
+    "notes": [
+      {
+        "note": 1,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 2,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 3,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 4,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 5,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 6,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 7,
+        "dialogOpen": true,
+        "closed": true
+      }
+    ]
+  },
+  {
+    "viewport": "mobile-390",
+    "locale": "es",
+    "ready": true,
+    "resting": {
+      "title": "Hola, ciudad.",
+      "subtitle": "Descubre qué está pasando a tu alrededor ahora mismo.",
+      "logoPresent": true,
+      "noteCount": 7,
+      "launchPanelAbsent": true,
+      "removedTextAbsent": true,
+      "h1Count": 1,
+      "dialogCount": 0,
+      "canonical": "https://hello-along.com/es/",
+      "hreflangCount": 4,
+      "htmlLang": "es"
+    },
+    "notes": [
+      {
+        "note": 1,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 2,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 3,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 4,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 5,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 6,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 7,
+        "dialogOpen": true,
+        "closed": true
+      }
+    ]
+  },
+  {
+    "viewport": "mobile-390",
+    "locale": "ru",
+    "ready": true,
+    "resting": {
+      "title": "Привет, город.",
+      "subtitle": "Посмотри, что происходит рядом прямо сейчас.",
+      "logoPresent": true,
+      "noteCount": 7,
+      "launchPanelAbsent": true,
+      "removedTextAbsent": true,
+      "h1Count": 1,
+      "dialogCount": 0,
+      "canonical": "https://hello-along.com/ru/",
+      "hreflangCount": 4,
+      "htmlLang": "ru"
+    },
+    "notes": [
+      {
+        "note": 1,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 2,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 3,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 4,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 5,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 6,
+        "dialogOpen": true,
+        "closed": true
+      },
+      {
+        "note": 7,
+        "dialogOpen": true,
+        "closed": true
+      }
+    ]
+  }
+]
