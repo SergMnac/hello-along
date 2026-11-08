@@ -2,7 +2,7 @@ import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import App, { getRouteContext } from '../App';
+import LegacyCampaignApp, { getLegacyRouteContext } from '../LegacyCampaignApp';
 import UnderConstructionPage from '../UnderConstructionPage';
 import { CAMPAIGN_PAYLOAD } from '../campaign/generatedCampaign';
 import { CAMPAIGN_STAGES, getUnlockedStage } from '../campaign/schedule';
@@ -82,24 +82,24 @@ describe('campaign content model', () => {
 
 describe('campaign routing', () => {
   it('recognizes locales and permanent reveal routes', () => {
-    expect(getRouteContext('/ru/discover/hello/')).toMatchObject({
+    expect(getLegacyRouteContext('/ru/discover/hello/')).toMatchObject({
       locale: 'ru',
       revealSlug: 'hello',
       notFound: false,
     });
-    expect(getRouteContext('/es/discover/future/')).toMatchObject({ locale: 'es', notFound: true });
+    expect(getLegacyRouteContext('/es/discover/future/')).toMatchObject({ locale: 'es', notFound: true });
   });
 
   it('covers every canonical slug', () => {
     campaignData.slugs.forEach((slug) => {
-      expect(getRouteContext(`/discover/${slug}/`)).toMatchObject({ revealSlug: slug, notFound: false });
+      expect(getLegacyRouteContext(`/discover/${slug}/`)).toMatchObject({ revealSlug: slug, notFound: false });
     });
   });
 
   it('renders localized shell and updates html lang', () => {
     render(
       <MemoryRouter initialEntries={['/ru']}>
-        <App />
+        <LegacyCampaignApp />
       </MemoryRouter>,
     );
     expect(document.documentElement.lang).toBe('ru');

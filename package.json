@@ -4,17 +4,23 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "node scripts/write-stage-content.mjs t-0 && vite",
-    "build": "node scripts/write-stage-content.mjs t-21 && vite build && node scripts/create-route-entrypoints.mjs",
+    "dev": "vite --host 127.0.0.1",
+    "dev:com": "vite --host 127.0.0.1 --mode com",
+    "build": "node scripts/build-markets.mjs",
+    "build:com": "node scripts/build-market.mjs com",
+    "build:ru": "node scripts/build-market.mjs ru",
+    "build:legacy": "node scripts/build-stages.mjs",
     "build:stage": "node scripts/write-stage-content.mjs",
     "build:stages": "node scripts/build-stages.mjs",
     "scan:leaks": "node scripts/stage-leakage-scan.mjs dist",
     "scan:stage-leaks": "node scripts/stage-leakage-scan.mjs artifacts/stages",
     "test:scheduler": "bash scripts/rehearse-scheduler.sh",
-    "preview": "vite preview --host 0.0.0.0",
+    "preview": "vite preview --host 127.0.0.1",
+    "typecheck": "tsc --noEmit",
     "serve:static": "node scripts/static-stage-server.mjs",
     "lint": "eslint . --ext .js,.ts,.jsx,.tsx",
     "test": "vitest run"
+    ,"test:browser": "playwright test"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -22,6 +28,7 @@
     "react-router-dom": "^6.17.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.65.0",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^7.0.0",
     "@testing-library/react": "^16.3.2",
