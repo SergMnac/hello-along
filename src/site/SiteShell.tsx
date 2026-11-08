@@ -12,6 +12,7 @@ import { primaryRoutes } from './routes';
 import { ArchiveIndex, ArchiveReader } from './ArchivePage';
 import SafetyPage from './SafetyPage';
 import LegalPage from './LegalPage';
+import { LocalizedPage } from './localizedPages';
 
 function Languages({ context, done }: { context: SiteContext; done?: () => void }) {
   return <div className="language-links" aria-label={copy[context.locale].language}>
@@ -77,7 +78,7 @@ export default function SiteShell({ context }: { context: SiteContext }) {
       <nav className="desktop-nav" aria-label="Primary">{primaryRoutes.filter((route) => route.nav && route.id !== 'home').map((route) => <Link key={route.id} to={localizedPath(route.path, context.locale)}>{text.nav[route.id]}</Link>)}</nav>
       <div className="desktop-language"><Languages context={context} /></div><MobileMenu context={context} />
     </header>
-    {context.route.id === 'story' && !context.notFound ? <ArchiveIndex locale={context.locale} /> : context.route.id === 'archive' && context.archiveSlug ? <ArchiveReader locale={context.locale} slug={context.archiveSlug} /> : isRuHome ? <HomePage /> : isRuHow ? <HowItWorksPage /> : isRuBusiness ? <BusinessPage /> : isRuAbout ? <AboutPage /> : isRuSupport ? <SupportPage /> : isRuSafety ? <SafetyPage /> : isRuLegal ? <LegalPage /> : <SkeletonContent context={context} />}
+    {context.notFound ? <SkeletonContent context={context} /> : context.route.id === 'story' ? <ArchiveIndex locale={context.locale} /> : context.route.id === 'archive' && context.archiveSlug ? <ArchiveReader locale={context.locale} slug={context.archiveSlug} /> : isRuHome ? <HomePage /> : isRuHow ? <HowItWorksPage /> : isRuBusiness ? <BusinessPage /> : isRuAbout ? <AboutPage /> : isRuSupport ? <SupportPage /> : isRuSafety ? <SafetyPage /> : isRuLegal ? <LegalPage /> : <LocalizedPage locale={context.locale as 'en'|'es'} pageId={context.route.id as 'home'|'how'|'business'|'about'|'support'|'safety'|'legal'} />}
     <footer className="site-footer">
       <div className="footer-links"><Link to={localizedPath('/', context.locale)}>{text.nav.home}</Link><Link to={localizedPath('/how-it-works', context.locale)}>{text.nav.how}</Link><Link to={localizedPath('/business', context.locale)}>{text.nav.business}</Link><Link to={localizedPath('/about', context.locale)}>{text.nav.about}</Link><Link to={localizedPath('/support', context.locale)}>{text.titles.support}</Link><Link to={localizedPath('/safety', context.locale)}>{text.titles.safety}</Link><Link to={localizedPath('/legal', context.locale)}>{text.titles.legal}</Link></div>
       <p>support@hello-along.com</p>

@@ -13,12 +13,13 @@ const locales=['en','es','ru'];
 const index=readFileSync(join(out,'index.html'),'utf8');
 const domains={com:'hello-along.com',ru:'hello-along.ru'};
 const defaults={com:'en',ru:'ru'};
+const labels={en:{'/':'The city feels closer','/how-it-works':'How Along works','/business':'Along for city places','/about':'About Along','/story/21-days-to-life':'21 Days to Life','/safety':'Safety','/support':'Support','/legal':'Legal'},es:{'/':'La ciudad se siente más cerca','/how-it-works':'Cómo funciona Along','/business':'Along para lugares urbanos','/about':'Acerca de Along','/story/21-days-to-life':'21 días para la vida','/safety':'Seguridad','/support':'Ayuda','/legal':'Información legal'},ru:{'/':'Город становится ближе','/how-it-works':'Как работает Along','/business':'Along для городских мест','/about':'О проекте','/story/21-days-to-life':'21 день до жизни','/safety':'Безопасность','/support':'Поддержка','/legal':'Правовая информация'}};
 function metadata(path){
   const parts=path.split('/').filter(Boolean);const explicit=locales.includes(parts[0])?parts.shift():null;const locale=explicit??defaults[market];const route=`/${parts.join('/')}`||'/';
   const authority=route==='/legal'?market:locale==='ru'?'ru':'com';const authorityPrefix=locale===defaults[authority]?'':`/${locale}`;const canonical=`https://${domains[authority]}${authorityPrefix}${route==='/'?'/':route}`;
-  const routeLabel=route==='/'?'Home':route.split('/').filter(Boolean).at(-1).replaceAll('-',' ');const title=`${routeLabel} · Along`;
+  const routeLabel=labels[locale][route]??(route.startsWith('/discover/')?'Along archive':'Along');const title=`${routeLabel} · Along`;
   const alternates=locales.map(code=>{const target=code==='ru'?'ru':'com';const prefix=code===defaults[target]?'':`/${code}`;return `<link rel="alternate" hreflang="${code}" href="https://${domains[target]}${prefix}${route==='/'?'/':route}" />`}).join('')+`<link rel="alternate" hreflang="x-default" href="https://hello-along.com${route==='/'?'/':route}" />`;
-  return index.replace(/<html lang="[^"]+">/,`<html lang="${locale}">`).replace(/<title>.*?<\/title>/,`<title>${title}</title>`).replace(/<link rel="canonical" href="[^"]+" \/>/,`<link rel="canonical" href="${canonical}" />${alternates}`).replace(/<meta property="og:url" content="[^"]+" \/>/,`<meta property="og:url" content="${canonical}" />`);
+  return index.replace(/<html lang="[^"]+">/,`<html lang="${locale}">`).replace(/<title>.*?<\/title>/,`<title>${title}</title>`).replace(/<link rel="canonical" href="[^"]+" \/>/,`<link rel="canonical" href="${canonical}" />${alternates}`).replace(/<meta property="og:url" content="[^"]+" \/>/,`<meta property="og:url" content="${canonical}" />`).replace('</head>',`<meta property="og:title" content="${title}" /><meta property="og:locale" content="${{ru:'ru_RU',en:'en_US',es:'es_ES'}[locale]}" /></head>`);
 }
 const paths=new Set(routes);
 for(const locale of locales) for(const route of routes) paths.add(`${locale}${route?`/${route}`:''}`);
