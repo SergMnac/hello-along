@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 type ConceptImageProps = { src: string; alt: string; className?: string; position?: string };
-function ConceptImage({ src, alt, className = '', position }: ConceptImageProps) {
+export function ConceptImage({ src, alt, className = '', position }: ConceptImageProps) {
   const [state, setState] = useState<'loading' | 'ready' | 'failed'>('loading');
   return <div className={`concept-image ${className}`} data-image-state={state}>
     {state !== 'failed' && <img src={src} alt={alt} style={{ objectPosition: position }} onLoad={() => setState('ready')} onError={() => setState('failed')} />}
@@ -11,7 +11,7 @@ function ConceptImage({ src, alt, className = '', position }: ConceptImageProps)
   </div>;
 }
 
-function ActionLink({ to, children, primary = false }: { to: string; children: React.ReactNode; primary?: boolean }) {
+export function ActionLink({ to, children, primary = false }: { to: string; children: React.ReactNode; primary?: boolean }) {
   return <Link className={primary ? 'home-action home-action-primary' : 'home-action'} to={to}>{children}</Link>;
 }
 
@@ -21,7 +21,7 @@ const scenarios = [
   ['Кино', '«Фильм, который захочется обсудить».'],
 ] as const;
 
-function SparkPreview({ joined = false }: { joined?: boolean }) {
+export function SparkPreview({ joined = false }: { joined?: boolean }) {
   return <article className="spark-phone" aria-label={joined ? 'Статичный макет: участие подтверждено' : 'Статичный макет: детали Искры'}>
     <div className="phone-status"><strong>9:41</strong><span>● ᯤ ▰</span></div>
     <div className="phone-nav"><span>‹ Назад</span><span aria-hidden="true">↗</span></div>
