@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "assets": [
+    { "path": "brand/along-wordmark-dark-primary.svg", "origin": "BRA-002 canonical registry", "rights": "approved-brand", "releaseEligible": true, "gitBlob": "5bf6fd8f3e7e2910242566180fb673a31486f798" },
+    { "path": "favicon.svg", "origin": "legacy hello-along repository", "rights": "unverified", "releaseEligible": false },
+    { "path": "assets/background-image@2x.png", "origin": "legacy Under Construction", "rights": "unverified", "releaseEligible": false },
+    { "path": "assets/background-image@2x.webp", "origin": "legacy Under Construction", "rights": "unverified", "releaseEligible": false },
+    { "path": "logo/along-logo-dark.svg", "origin": "legacy Under Construction; not canonical BRA-002", "rights": "unverified", "releaseEligible": false },
+    { "path": "concept/city-at-dusk.png", "origin": "Along.Web Figma Home frame", "rights": "unverified", "releaseEligible": false },
+    { "path": "concept/event-artwork.png", "origin": "Along.Web Figma Home frame", "rights": "unverified", "releaseEligible": false },
+    { "path": "concept/organizer-portrait.png", "origin": "Along.Web Figma Home frame", "rights": "unverified", "releaseEligible": false },
+    { "path": "concept/place-artwork.png", "origin": "Along.Web Figma Home frame", "rights": "unverified", "releaseEligible": false },
+    { "path": "concept/real-life-time.png", "origin": "Along.Web Figma Home frame", "rights": "unverified", "releaseEligible": false }
+  ],
+  "fonts": [
+    { "family": "Geist", "source": "system fallback only; no bundled or remote font", "releaseEligible": true },
+    { "family": "Work Sans", "source": "system fallback only; no bundled or remote font", "releaseEligible": true },
+    { "family": "Outfit", "source": "system fallback only; no bundled or remote font", "releaseEligible": true }
+  ]
+}
