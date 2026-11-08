@@ -38,6 +38,26 @@ test('How It Works anchors, history and truthful availability work', async ({ pa
   await expect(page.locator('#evening-walk')).toBeFocused();
 });
 
+test('Business, About and Support routes use real navigation and contacts', async ({ page }) => {
+  const partnership = `mailto:support@hello-along.com?subject=${encodeURIComponent('Партнёрство с Along')}`;
+  const support = `mailto:support@hello-along.com?subject=${encodeURIComponent('Поддержка Along')}`;
+  await page.goto('/business');
+  await expect(page.getByRole('heading', { name: 'Часть повседневной жизни города.' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Обсудить партнёрство ↗' })).toHaveAttribute('href', partnership);
+  await page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: 'О нас' }).click();
+  await expect(page).toHaveURL(/\/about$/);
+  await expect(page.getByRole('heading', { name: 'Больше места для жизни вокруг.' })).toBeVisible();
+  await page.goBack();
+  await expect(page).toHaveURL(/\/business$/);
+  await page.goto('/support');
+  const supportAction = page.getByRole('link', { name: 'Открыть почту ↗' });
+  await expect(supportAction).toHaveAttribute('href', support);
+  await supportAction.focus();
+  await expect(supportAction).toBeFocused();
+  await page.reload();
+  await expect(page.getByRole('heading', { name: 'Поддержка' })).toBeVisible();
+});
+
 test('mobile menu traps keyboard focus, closes with Escape and returns focus', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
@@ -58,6 +78,18 @@ for (const width of [320, 390, 768, 1440]) {
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
     await page.screenshot({ path: `artifacts/web-eng-002/screenshots/home-${width}.png`, fullPage: true });
   });
+}
+
+for (const route of ['business', 'about', 'support']) {
+  for (const width of [320, 390, 768, 1440]) {
+    test(`${route} visual evidence ${width}px`, async ({ page }) => {
+      await page.setViewportSize({ width, height: width < 700 ? 844 : 900 });
+      await page.goto(`/${route}`);
+      await expect(page.locator('main')).toBeVisible();
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
+      await page.screenshot({ path: `artifacts/web-eng-004/screenshots/${route}-${width}.png`, fullPage: true });
+    });
+  }
 }
 
 for (const width of [320, 390, 768, 1440]) {

@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import campaignData from '../campaign/campaign-data.json';
 import HomePage from './HomePage';
 import HowItWorksPage from './HowItWorksPage';
+import BusinessPage from './BusinessPage';
+import AboutPage from './AboutPage';
+import SupportPage from './SupportPage';
 import type { Locale } from './config';
 import { copy } from './copy';
 import { localizedPath, switchLocale, type SiteContext } from './routing';
@@ -63,14 +66,18 @@ export default function SiteShell({ context }: { context: SiteContext }) {
   const text = copy[context.locale];
   const isRuHome = !context.notFound && context.route.id === 'home' && context.locale === 'ru';
   const isRuHow = !context.notFound && context.route.id === 'how' && context.locale === 'ru';
-  return <div className={`site${isRuHome ? ' site-home' : ''}${isRuHow ? ' site-how' : ''}`}>
+  const isRuBusiness = !context.notFound && context.route.id === 'business' && context.locale === 'ru';
+  const isRuAbout = !context.notFound && context.route.id === 'about' && context.locale === 'ru';
+  const isRuSupport = !context.notFound && context.route.id === 'support' && context.locale === 'ru';
+  const isRuEditorial = isRuBusiness || isRuAbout || isRuSupport;
+  return <div className={`site${isRuHome ? ' site-home' : ''}${isRuHow ? ' site-how' : ''}${isRuEditorial ? ' site-editorial' : ''}`}>
     <a className="skip-link" href="#main">{context.locale === 'ru' ? 'К содержанию' : context.locale === 'es' ? 'Ir al contenido' : 'Skip to content'}</a>
     <header className="site-header">
       <Link className="brand" to={localizedPath('/', context.locale)} aria-label="Along"><img src="/brand/along-wordmark-dark-primary.svg" alt="Along" /></Link>
       <nav className="desktop-nav" aria-label="Primary">{primaryRoutes.filter((route) => route.nav && route.id !== 'home').map((route) => <Link key={route.id} to={localizedPath(route.path, context.locale)}>{text.nav[route.id]}</Link>)}</nav>
       <div className="desktop-language"><Languages context={context} /></div><MobileMenu context={context} />
     </header>
-    {isRuHome ? <HomePage /> : isRuHow ? <HowItWorksPage /> : <SkeletonContent context={context} />}
+    {isRuHome ? <HomePage /> : isRuHow ? <HowItWorksPage /> : isRuBusiness ? <BusinessPage /> : isRuAbout ? <AboutPage /> : isRuSupport ? <SupportPage /> : <SkeletonContent context={context} />}
     <footer className="site-footer">
       <div className="footer-links"><Link to={localizedPath('/', context.locale)}>{text.nav.home}</Link><Link to={localizedPath('/how-it-works', context.locale)}>{text.nav.how}</Link><Link to={localizedPath('/business', context.locale)}>{text.nav.business}</Link><Link to={localizedPath('/about', context.locale)}>{text.nav.about}</Link><Link to={localizedPath('/support', context.locale)}>{text.titles.support}</Link><Link to={localizedPath('/safety', context.locale)}>{text.titles.safety}</Link><Link to={localizedPath('/legal', context.locale)}>{text.titles.legal}</Link></div>
       <p>support@hello-along.com</p>
