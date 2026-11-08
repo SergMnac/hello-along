@@ -21,5 +21,5 @@ describe('Along.Web registry',()=>{
   it('uses cross-market content authority and legal jurisdiction',()=>{expect(canonicalFor(parseSiteLocation('/en/about'))).toBe('https://hello-along.com/about');expect(canonicalFor(parseSiteLocation('/legal'))).toContain('/legal')});
 });
 describe('accessible shell',()=>{
-  it('opens the mobile menu, closes with Escape, and renders RU first',()=>{render(<MemoryRouter initialEntries={['/']}><App/></MemoryRouter>);expect(screen.getByRole('heading',{name:'Город становится ближе'})).toBeTruthy();const button=screen.getByRole('button',{name:'Меню'});fireEvent.click(button);expect(screen.getByRole('dialog')).toBeTruthy();fireEvent.keyDown(window,{key:'Escape'});expect(screen.queryByRole('dialog')).toBeNull()});
+  it('opens the mobile menu, closes with Escape, and renders RU first',()=>{render(<MemoryRouter initialEntries={['/']}><App/></MemoryRouter>);expect(screen.getByRole('heading',{name:'Больше места для жизни.'})).toBeTruthy();const button=screen.getByRole('button',{name:'Меню'});fireEvent.click(button);expect(screen.getByRole('dialog')).toBeTruthy();fireEvent.keyDown(window,{key:'Escape'});expect(screen.queryByRole('dialog')).toBeNull()});
 });
