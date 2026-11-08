@@ -92,6 +92,31 @@ test('all archive locales, trailing slash and missing slug resolve correctly', a
   await expect(page.getByRole('heading',{name:'404'})).toBeVisible();
 });
 
+test('Safety and Legal navigation, refresh, history and keyboard focus work',async({page})=>{
+  await page.goto('/safety');
+  await expect(page.getByRole('heading',{level:1,name:'Безопасность'})).toBeVisible();
+  const legalLink=page.getByRole('link',{name:'Правовая информация →'});
+  await legalLink.focus(); await expect(legalLink).toBeFocused(); await page.keyboard.press('Enter');
+  await expect(page).toHaveURL(/\/legal$/);
+  await expect(page.getByRole('heading',{level:1,name:'Правовая информация'})).toBeVisible();
+  await expect(page.locator('[data-market="com"]')).toHaveCount(3);
+  await expect(page.locator('[data-market="ru"]')).toHaveCount(3);
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content','noindex,follow');
+  await page.reload(); await expect(page.getByText('Условия использования .ru')).toBeVisible();
+  await page.goBack(); await expect(page).toHaveURL(/\/safety$/);
+});
+
+for(const route of ['safety','legal']){
+  for(const width of [320,390,768,1440]){
+    test(`WEB-ENG-006 ${route} visual evidence ${width}px`,async({page})=>{
+      await page.setViewportSize({width,height:width<700?844:900}); await page.goto(`/${route}`);
+      await expect(page.locator('main')).toBeVisible();
+      expect(await page.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth)).toBe(true);
+      await page.screenshot({path:`artifacts/web-eng-006/screenshots/${route}-${width}.png`,fullPage:true});
+    });
+  }
+}
+
 for (const width of [320,390,768,1440]) {
   test(`archive visual evidence ${width}px`,async({page})=>{
     await page.setViewportSize({width,height:width<700?844:900});

@@ -10,6 +10,8 @@ import { copy } from './copy';
 import { localizedPath, switchLocale, type SiteContext } from './routing';
 import { primaryRoutes } from './routes';
 import { ArchiveIndex, ArchiveReader } from './ArchivePage';
+import SafetyPage from './SafetyPage';
+import LegalPage from './LegalPage';
 
 function Languages({ context, done }: { context: SiteContext; done?: () => void }) {
   return <div className="language-links" aria-label={copy[context.locale].language}>
@@ -65,7 +67,9 @@ export default function SiteShell({ context }: { context: SiteContext }) {
   const isRuAbout = !context.notFound && context.route.id === 'about' && context.locale === 'ru';
   const isRuSupport = !context.notFound && context.route.id === 'support' && context.locale === 'ru';
   const isArchive = !context.notFound && (context.route.id === 'story' || context.route.id === 'archive');
-  const isRuEditorial = isRuBusiness || isRuAbout || isRuSupport;
+  const isRuSafety = !context.notFound && context.route.id === 'safety' && context.locale === 'ru';
+  const isRuLegal = !context.notFound && context.route.id === 'legal' && context.locale === 'ru';
+  const isRuEditorial = isRuBusiness || isRuAbout || isRuSupport || isRuSafety || isRuLegal;
   return <div className={`site${isRuHome ? ' site-home' : ''}${isRuHow ? ' site-how' : ''}${isRuEditorial ? ' site-editorial' : ''}${isArchive ? ' site-archive' : ''}`}>
     <a className="skip-link" href="#main">{context.locale === 'ru' ? 'К содержанию' : context.locale === 'es' ? 'Ir al contenido' : 'Skip to content'}</a>
     <header className="site-header">
@@ -73,7 +77,7 @@ export default function SiteShell({ context }: { context: SiteContext }) {
       <nav className="desktop-nav" aria-label="Primary">{primaryRoutes.filter((route) => route.nav && route.id !== 'home').map((route) => <Link key={route.id} to={localizedPath(route.path, context.locale)}>{text.nav[route.id]}</Link>)}</nav>
       <div className="desktop-language"><Languages context={context} /></div><MobileMenu context={context} />
     </header>
-    {context.route.id === 'story' && !context.notFound ? <ArchiveIndex locale={context.locale} /> : context.route.id === 'archive' && context.archiveSlug ? <ArchiveReader locale={context.locale} slug={context.archiveSlug} /> : isRuHome ? <HomePage /> : isRuHow ? <HowItWorksPage /> : isRuBusiness ? <BusinessPage /> : isRuAbout ? <AboutPage /> : isRuSupport ? <SupportPage /> : <SkeletonContent context={context} />}
+    {context.route.id === 'story' && !context.notFound ? <ArchiveIndex locale={context.locale} /> : context.route.id === 'archive' && context.archiveSlug ? <ArchiveReader locale={context.locale} slug={context.archiveSlug} /> : isRuHome ? <HomePage /> : isRuHow ? <HowItWorksPage /> : isRuBusiness ? <BusinessPage /> : isRuAbout ? <AboutPage /> : isRuSupport ? <SupportPage /> : isRuSafety ? <SafetyPage /> : isRuLegal ? <LegalPage /> : <SkeletonContent context={context} />}
     <footer className="site-footer">
       <div className="footer-links"><Link to={localizedPath('/', context.locale)}>{text.nav.home}</Link><Link to={localizedPath('/how-it-works', context.locale)}>{text.nav.how}</Link><Link to={localizedPath('/business', context.locale)}>{text.nav.business}</Link><Link to={localizedPath('/about', context.locale)}>{text.nav.about}</Link><Link to={localizedPath('/support', context.locale)}>{text.titles.support}</Link><Link to={localizedPath('/safety', context.locale)}>{text.titles.safety}</Link><Link to={localizedPath('/legal', context.locale)}>{text.titles.legal}</Link></div>
       <p>support@hello-along.com</p>
